@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">JeevanBimaCamp</string>
+    <string name="email">jeevanbimacamp@gmail.com</string>
+    <string name="usernameReg">Username</string>
+    <string name="emailReg">Email</string>
+    <string name="passwordReg">Password</string>
+    <string name="sign_upReg">Sign up</string>
+    <string name="sign_inLog">Sign in</string>
+    <string name="signin_redirect">Already a member? Sign in!</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="signup_redirect">Don\'t have an account? Register here!</string>
+    <string name="security_code">Security Code</string>
+
+    <string name="facebook_app_id">773819743153415</string>
+    <string name="fb_login_protocol_scheme">fb773819743153415</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Profile</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Recharge Wallet</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Logout</string>
+    <string name="topupnote">Top-up Your wallet through
+        UPI,Credit &amp; Debit Card and Net-banking (Min-10,Max-1000)</string>
+    <string name="restriction">Wallet is 100% usable without any restrictions and will not expire</string>
+    <string name="refertv">Refer the Jeevan Bimacamp app to your Friend and Earn Free Presentation on their First Presentation Purchase</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="spliter">**</string>
+
+</resources>

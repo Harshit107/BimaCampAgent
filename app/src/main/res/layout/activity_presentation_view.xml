@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".PresentationView">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:background="@drawable/rounddesign"
+        android:orientation="vertical"
+        android:id="@+id/linear">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:tint="@color/white"
+            android:textColor="#fff"
+            android:background="@color/transparent"
+            android:textStyle="bold"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wallet Balance :"
+            android:textSize="20sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/white"
+            />
+        <TextView
+            android:id="@+id/wallet_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs 20"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#1E0257"
+            />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Today's Presentation :"
+                android:textSize="20sp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/white"
+                />
+            <TextView
+                android:id="@+id/presentation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="20sp"
+                android:textStyle="bold"
+
+                android:layout_marginLeft="20dp"
+                android:textColor="#1E0257"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Un used presentation will automatically expired after mid night"
+                android:textSize="15sp"
+
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="30dp"
+                android:textColor="@color/white"
+                />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/linear"
+
+        android:id="@+id/linearRadioCarry">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buy Presentation"
+            android:textSize="25dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/colorPrimary"
+            android:drawableStart="@drawable/presentation"
+            android:drawablePadding="10dp"
+            />
+
+
+
+        <co.ceryle.radiorealbutton.RadioRealButtonGroup
+            android:id="@+id/group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:rrbg_animateDrawables_enter="overshoot"
+            app:rrbg_animateTexts_enter="cycle"
+            app:rrbg_dividerColor="@color/black"
+            app:rrbg_dividerSize="1dp"
+            app:rrbg_animate="true"
+            app:rrbg_radius="10dp"
+            app:rrbg_selectorBringToFront="true"
+            app:rrbg_selectorColor="@color/oragnge"
+            app:rrbg_selectorSize="8dp">
+
+            <co.ceryle.radiorealbutton.RadioRealButton
+                android:id="@+id/button1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rrb_drawable="@drawable/one"
+                app:rrb_drawableGravity="top"
+                app:rrb_drawableHeight="30dp"
+                app:rrb_drawablePadding="8dp"
+                app:rrb_drawableWidth="30dp"
+                app:rrb_ripple="true"
+                app:rrb_rippleColor="@color/black"
+                app:rrb_text="At Rs 1/-"
+                app:rrb_textColor="@color/black"/>
+
+            <co.ceryle.radiorealbutton.RadioRealButton
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rrb_drawable="@drawable/five"
+                app:rrb_drawableGravity="top"
+                app:rrb_drawableHeight="30dp"
+                app:rrb_drawablePadding="8dp"
+                app:rrb_drawableWidth="30dp"
+                app:rrb_ripple="true"
+                app:rrb_rippleColor="@color/black"
+                android:gravity="center"
+                app:rrb_text="At RS 4/-"
+                app:rrb_textColor="@color/black"/>
+            <co.ceryle.radiorealbutton.RadioRealButton
+                android:id="@+id/button3"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rrb_drawable="@drawable/ten"
+                app:rrb_drawableGravity="top"
+                app:rrb_drawableHeight="30dp"
+                app:rrb_drawablePadding="8dp"
+                app:rrb_drawableWidth="30dp"
+                app:rrb_ripple="true"
+                app:rrb_rippleColor="@color/black"
+                app:rrb_text="At RS 6/-"
+                app:rrb_textColor="@color/black"/>
+
+        </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="10"
+            android:layout_marginTop="10dp"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="0% OFF"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/colorPrimary"
+                android:drawablePadding="10dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight=".3"
+                android:layout_height="wrap_content"
+
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="20% OFF"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+
+                android:textColor="@color/colorPrimary"
+                android:drawablePadding="10dp"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+
+                />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="40% OFF"
+                android:gravity="center"
+
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/colorPrimary"
+                android:drawablePadding="10dp"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight=".2"
+                android:layout_height="wrap_content"
+
+                />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/insufficient"
+        android:layout_above="@+id/but_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Insufficient Balance"
+        android:visibility="gone"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/colorAccent"
+        />
+
+    <Button
+        android:id="@+id/but_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buy Now"
+        android:layout_margin="20dp"
+        android:background="@drawable/profilebuttonstyle"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/white"
+        />
+
+
+
+    <include
+        android:id="@+id/progress_bar"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        layout="@layout/progress_fragment"/>
+
+</RelativeLayout>

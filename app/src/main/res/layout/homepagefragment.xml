@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:id="@+id/linearlayoutmanager"
+    android:background="@color/lightblue"
+    android:layout_height="match_parent">
+<ScrollView
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:padding="10dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_pic"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/avtar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="start"
+                    android:hint="Name"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#000"
+                    android:maxLines="1"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="start"
+                    android:hint="Email"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#000"
+                    android:maxLines="1"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/plan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="start"
+                    android:layout_marginTop="5dp"
+                    android:hint="Last Login"
+                    android:maxLines="2"
+                    android:textColorHint="@color/colorPrimary"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        app:cardCornerRadius="8dp"
+        card_view:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0">
+
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/imageSlider"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="1dp"
+            app:sliderAnimationDuration="600"
+            app:sliderAutoCycleDirection="back_and_forth"
+            app:sliderAutoCycleEnabled="true"
+            app:sliderCircularHandlerEnabled="true"
+            app:sliderIndicatorAnimationDuration="600"
+            app:sliderIndicatorGravity="center_horizontal|bottom"
+            app:sliderIndicatorMargin="15dp"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorPadding="3dp"
+            app:sliderIndicatorRadius="2dp"
+            app:sliderIndicatorSelectedColor="@color/colorPrimary"
+            app:sliderIndicatorUnselectedColor="#FFF"
+            app:sliderScrollTimeInSec="1"
+            app:sliderStartAutoCycle="true" />
+    </androidx.cardview.widget.CardView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_82sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:id="@+id/fAvailablePolicy"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="@dimen/_80sdp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_30sdp"
+                app:cardCornerRadius="@dimen/_20sdp"
+                app:cardElevation="@dimen/_3sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvMenuTitle4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:fontFamily="@font/opensanssemibold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp"
+                        android:text="Available Policy" />
+
+
+                    <TextView
+                        android:id="@+id/tvMenuItems4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/opensansregular"
+                        android:text="Total Policy Available..."
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_80sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMenu4"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_toLeftOf="@+id/homePresentation"
+                android:background="@drawable/imege_elevation"
+                android:elevation="@dimen/_5sdp"
+                android:src="@drawable/availablepolicy"
+                android:visibility="visible"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp"
+                tools:ignore="NotSibling" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_80sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMenuDetail4"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_next"
+                android:visibility="visible"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="0dp"
+                tools:ignore="NotSibling" />
+        </RelativeLayout>
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_82sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:id="@+id/fCreatePresentation"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="@dimen/_80sdp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_30sdp"
+                app:cardCornerRadius="@dimen/_20sdp"
+                app:cardElevation="@dimen/_3sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/createNewPresentation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:fontFamily="@font/opensanssemibold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp"
+                        android:text="Create New Presentation" />
+
+
+                    <TextView
+                        android:id="@+id/tvMenuItems3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/opensansregular"
+                        android:text="You can Create New Presentation."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_80sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMenu3"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_toLeftOf="@+id/addcustomer"
+                android:background="@drawable/imege_elevation"
+                android:elevation="@dimen/_5sdp"
+                android:src="@drawable/create_new"
+                android:padding="10dp"
+                android:visibility="visible"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp"
+                tools:ignore="NotSibling" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_80sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMenuDetail3"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_next"
+                android:visibility="visible"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="0dp"
+                tools:ignore="NotSibling" />
+        </RelativeLayout>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_82sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:id="@+id/fViewPresentation"
+       >
+        <RelativeLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="@dimen/_80sdp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_30sdp"
+                app:cardCornerRadius="@dimen/_20sdp"
+                app:cardElevation="@dimen/_3sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/homePresentation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:fontFamily="@font/opensanssemibold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp"
+                        android:text="View Presentation" />
+
+
+                    <TextView
+                        android:id="@+id/tvMenuItems"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:paddingRight="20dp"
+                        android:fontFamily="@font/opensansregular"
+                        android:text="You can View Your Presentation here."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                       />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_80sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMenu"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/imege_elevation"
+                android:elevation="@dimen/_5sdp"
+                android:src="@drawable/npresentation"
+                android:padding="10dp"
+                android:visibility="visible"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp"
+                tools:ignore="NotSibling" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_80sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMenuDetail"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_next"
+                android:visibility="visible"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="0dp"
+                tools:ignore="NotSibling" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_82sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:id="@+id/fAddCustomer"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="@dimen/_80sdp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_30sdp"
+                app:cardCornerRadius="@dimen/_20sdp"
+                app:cardElevation="@dimen/_3sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/addCustomer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:fontFamily="@font/opensanssemibold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp"
+                        android:text="Add Customer" />
+
+
+                    <TextView
+                        android:id="@+id/addCustomerCount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/opensansregular"
+                        android:text="Total Customer : 40"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_80sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMenu1"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_5sdp"
+                android:padding="15dp"
+                android:background="@drawable/imege_elevation"
+                android:elevation="@dimen/_5sdp"
+                android:src="@drawable/addpeople"
+                android:visibility="visible"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp"
+                tools:ignore="NotSibling" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_80sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMenuDetail1"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_next"
+                android:visibility="visible"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="0dp"
+                tools:ignore="NotSibling" />
+        </RelativeLayout>
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_82sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:id="@+id/fViewCustomer"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="@dimen/_80sdp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_30sdp"
+                app:cardCornerRadius="@dimen/_20sdp"
+                app:cardElevation="@dimen/_3sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/viewCustomer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:fontFamily="@font/opensanssemibold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp"
+                        android:text="View Customer" />
+
+
+                    <TextView
+                        android:id="@+id/tvMenuItems2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/opensansregular"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="Click to View Your Customer."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_80sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMenu2"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_toLeftOf="@+id/addcustomer"
+                android:background="@drawable/imege_elevation"
+                android:elevation="@dimen/_5sdp"
+                android:src="@drawable/viewcustomer"
+                android:padding="10dp"
+                android:visibility="visible"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp"
+                tools:ignore="NotSibling" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_80sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMenuDetail2"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_next"
+                android:visibility="visible"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="0dp"
+                tools:ignore="NotSibling" />
+        </RelativeLayout>
+    </FrameLayout>
+
+
+</LinearLayout>
+</ScrollView>
+</LinearLayout>

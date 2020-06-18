@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6FAFD"
+    android:id="@+id/main_layout"
+    >
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appbar"
+        android:layout_alignParentTop="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:background="?attr/colorPrimary"
+
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="30dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_arrow_back_black_24dp"
+                    android:scaleType="fitStart"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:text="Add Customer"
+                    android:id="@+id/tv_name"
+                    android:gravity="center_vertical"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#fff"
+                    android:layout_gravity="start"/>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:layout_below="@id/appbar"
+        android:layout_marginBottom="10dp">
+<!--        android:layout_below="@id/appbar"-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+            android:gravity="center"
+
+            >
+
+           <ImageView
+               android:layout_width="30dp"
+               android:layout_height="30dp"
+
+               android:src="@drawable/icon_person"
+               android:padding="1.5dp"
+               android:backgroundTint="@color/colorAccent"
+               android:background="@drawable/roundbluecolor"/>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="3dp"
+                android:background="@color/white"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/roundbluecolor"/>
+
+        </LinearLayout>
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:background="@color/colorPrimary"
+    android:textStyle="bold"
+    android:textSize="15dp"
+    android:textColor="@color/white"
+    android:text="User Registration Form"
+    android:gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+    >
+
+
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/roundbordercolorprimery"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/icon_person"/>
+            <EditText
+                android:id="@+id/name"
+                android:background="@color/transparent"
+                android:textColorHint="@color/com_facebook_device_auth_text"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+
+                android:hint="Name"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/roundbordercolorprimery"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_email_black_24dp"/>
+            <EditText
+                android:id="@+id/email"
+                android:background="@color/transparent"
+                android:textColorHint="@color/com_facebook_device_auth_text"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                android:paddingLeft="20dp"
+                android:hint="user@gamil.com"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/roundbordercolorprimery"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_local_phone_black_24dp"/>
+            <EditText
+                android:id="@+id/phone"
+                android:background="@color/transparent"
+                android:textColorHint="@color/com_facebook_device_auth_text"
+                android:textStyle="bold"
+                android:maxLength="10"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="phone"
+                android:paddingLeft="20dp"
+                android:hint="Phone Number"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+            android:id="@+id/l_gender"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:background="@drawable/roundbordercolorprimery"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/gender"/>
+            <TextView
+                android:id="@+id/gender_tv"
+                android:background="@color/transparent"
+                android:textColorHint="@color/com_facebook_device_auth_text"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:hint="Gender"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+            android:id="@+id/l_dob"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:background="@drawable/roundbordercolorprimery"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_date_range_black_24dp"/>
+            <TextView
+                android:id="@+id/dob"
+                android:background="@color/transparent"
+                android:textColorHint="@color/com_facebook_device_auth_text"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:hint="Date of Birth"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+            android:id="@+id/l_marital"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:background="@drawable/roundbordercolorprimery"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/ms"/>
+            <TextView
+                android:id="@+id/marital_status"
+                android:gravity="center_vertical"
+                android:background="@color/transparent"
+                android:textColorHint="@color/com_facebook_device_auth_text"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:hint="Marital Status"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+            android:id="@+id/anniversary_tv"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:background="@drawable/roundbordercolorprimery"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/ic_date_range_black_24dp"/>
+            <TextView
+                android:id="@+id/anniversary_date"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:textColorHint="@color/com_facebook_device_auth_text"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:hint="Anniversary Date"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+            android:id="@+id/l_familymember"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:background="@drawable/roundbordercolorprimery"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_group_black_24dp"
+                android:tint="@color/colorPrimary" />
+            <TextView
+                android:id="@+id/totalfamily"
+                android:gravity="center_vertical"
+                android:background="@color/transparent"
+                android:textColorHint="@color/com_facebook_device_auth_text"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:hint="Total Family Member"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:background="@drawable/roundbordercolorprimery"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/ic_location_on_black_24dp"/>
+            <EditText
+                android:id="@+id/state"
+                android:background="@color/transparent"
+                android:textColorHint="@color/com_facebook_device_auth_text"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:inputType="textPostalAddress"
+                android:hint="Address( State )"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:background="@drawable/roundbordercolorprimery"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="1dp"
+                android:tint="@color/transparent"
+                android:src="@drawable/ic_group_black_24dp"/>
+            <EditText
+                android:id="@+id/area"
+                android:gravity="center_vertical"
+                android:background="@color/transparent"
+                android:textColorHint="@color/com_facebook_device_auth_text"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:inputType="textPostalAddress"
+
+                android:hint="Location/Area"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:background="@drawable/roundbordercolorprimery"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="1dp"
+                android:tint="@color/transparent"
+                android:src="@drawable/ic_group_black_24dp"/>
+            <EditText
+                android:id="@+id/landmark"
+                android:gravity="center_vertical"
+                android:background="@color/transparent"
+                android:textColorHint="@color/com_facebook_device_auth_text"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:paddingLeft="20dp"
+                android:inputType="textPostalAddress"
+                android:hint="Land Mark"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:background="@drawable/roundbordercolorprimery"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="1dp"
+                android:tint="@color/transparent"
+                android:src="@drawable/ic_group_black_24dp"/>
+            <EditText
+                android:id="@+id/pincode"
+                android:gravity="center_vertical"
+                android:background="@color/transparent"
+                android:textColorHint="@color/com_facebook_device_auth_text"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLength="6"
+                android:inputType="numberDecimal"
+                android:paddingLeft="20dp"
+                android:hint="Pincode"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/update"
+            android:textColor="#fff"
+            android:background="@drawable/btnsignup_gradient"
+            android:layout_marginTop="35dp"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_width="match_parent"
+
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content"
+            android:text="Next"/>
+
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+</RelativeLayout>

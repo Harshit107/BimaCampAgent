@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "6864383262",
+    "firebase_url": "https://jeevanbimacamp-lifeinsurance.firebaseio.com",
+    "project_id": "jeevanbimacamp-lifeinsurance",
+    "storage_bucket": "jeevanbimacamp-lifeinsurance.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6864383262:android:2f84a57526c40102e0ad0f",
+        "android_client_info": {
+          "package_name": "com.teknesya.jeevanbimacamp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6864383262-t2lod8v934ddofmcfn2j1e5ahi64vsck.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teknesya.jeevanbimacamp",
+            "certificate_hash": "75e2b280fca50f25f61671fd720aaaa318e3465d"
+          }
+        },
+        {
+          "client_id": "6864383262-v8c72fptjqsnpp3o2k172dl4ob6q63gh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9MLzfIiwxVtyhYHCcHnPb1Cvovcq-8cM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6864383262-v8c72fptjqsnpp3o2k172dl4ob6q63gh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

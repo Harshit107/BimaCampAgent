@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TabFragment.PendingReferral">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/noPending"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="No Pending Referral Found"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerPending"/>
+
+    <include
+        android:id="@+id/progress_bar"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        layout="@layout/progress_fragment"/>
+
+</FrameLayout>

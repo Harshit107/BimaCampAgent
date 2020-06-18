@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/prograss_rl"
+    android:visibility="visible"
+    android:clickable="true"
+    android:background="@color/progresstransparent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--        <ProgressBar-->
+    <!--            android:id="@+id/progress_bar"-->
+    <!--            android:layout_width="150dp"-->
+    <!--            android:layout_height="150dp"-->
+    <!--            android:layout_centerInParent="true"-->
+    <!--            android:indeterminate="true"-->
+    <!--            android:indeterminateTintMode="src_atop"-->
+    <!--            android:indeterminateBehavior="cycle"-->
+    <!--            style="?android:cycles"-->
+    <!--            android:indeterminateTint="@color/white"-->
+    <!--            />-->
+    <pl.droidsonroids.gif.GifImageButton
+        android:id="@+id/progress_bar"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/unnamed"
+
+        />
+
+    <ImageView
+
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/logo"
+        />
+
+    <TextView
+        android:id="@+id/progress_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progress_bar"
+        android:gravity="center"
+        android:text="Please wait"
+        android:layout_margin="20dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginTop="15dp"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.teknesya.jeevanbimacamp">
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".notification.Notification_channel"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/logo_noshadow"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/logo_noshadow"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".CustPresentationView"/>
+        <activity android:name=".AgentCreatePresentation" />
+        <activity android:name=".AgentViewPresentation" />
+        <activity android:name=".AgentAnimationView" />
+        <activity android:name=".PresentationView" />
+        <activity android:name=".AgentReferralHistory" />
+        <activity android:name=".Myreferral" />
+        <activity android:name=".AgentNotification" />
+        <activity android:name=".ShareAndEarn" />
+        <activity android:name=".AgentBaseActivity" />
+        <activity android:name=".CustHomePage" />
+        <activity android:name=".Exit" />
+        <activity android:name=".AgentMainActivity" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".SplashScrActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".PWresetActivity" />
+        <activity android:name=".AgentProfile" />
+        <activity android:name=".UserForm" />
+        <activity android:name=".RechargeWallet" />
+        <activity android:name=".Nointernate" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <activity android:name=".UserForm2" />
+        <activity android:name=".Utils.MailSender" />
+        <activity android:name=".CustAnimationView" />
+        <activity android:name=".AlarmSetting" />
+        <receiver android:name=".Utils.BroadCastReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
