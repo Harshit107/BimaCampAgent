@@ -188,8 +188,7 @@ public class AgentMainActivity extends AppCompatActivity implements NavigationVi
                     selectFragment = new HomeFragment();
                     break;
                 case R.id.nav_wallet:
-                    Intent it=new Intent(getApplicationContext(),AlarmSetting.class);
-                    startActivity(it);
+                    selectFragment = new ServiceFragment();
                     break;
 
                 case R.id.account:
@@ -211,6 +210,8 @@ public class AgentMainActivity extends AppCompatActivity implements NavigationVi
             AlertDialog.Builder builder = new AlertDialog.Builder(AgentMainActivity.this);
 
             builder.setMessage("Do You Want To exit ?");
+            builder.setTitle(R.string.app_name)
+                    .setIcon(getResources().getDrawable(R.drawable.logo));
             builder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

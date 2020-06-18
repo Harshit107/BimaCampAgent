@@ -49,7 +49,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.teknesya.jeevanbimacamp.Utils.Date;
+import com.teknesya.jeevanbimacamp.Utils.DateBima;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -251,9 +251,9 @@ public class RegistrationActivity extends AppCompatActivity {
         dRef.child(firebaseAuth.getUid()).child("wallet").setValue("0");
         dRef.child(firebaseAuth.getUid()).child("type").setValue("customer");
         dRef.child(firebaseAuth.getUid()).child("account").setValue(account);
-        dRef.child(firebaseAuth.getUid()).child("creationdate").setValue(Date.getDate());
+        dRef.child(firebaseAuth.getUid()).child("creationdate").setValue(DateBima.getDate());
         dRef.child(firebaseAuth.getUid()).child("device").setValue(android.os.Build.MODEL);
-        dRef.child(firebaseAuth.getUid()).child("lastlogin").setValue(Date.getDate());
+        dRef.child(firebaseAuth.getUid()).child("lastlogin").setValue(DateBima.getDate());
         DatabaseReference user_type=mRoot.child("checkuser").child(firebaseAuth.getUid());
         user_type.setValue("customer");
 
@@ -268,7 +268,7 @@ public class RegistrationActivity extends AppCompatActivity {
             dRef.child(firebaseAuth.getUid()).child("agentId").setValue(agent_uid);
             DatabaseReference pending=mRoot.child("users").child("customer").child("registered")
                     .child("referral").child("pending").child(agent_uid).child(firebaseAuth.getUid());
-            pending.setValue(Date.getDate());
+            pending.setValue(DateBima.getDate());
         }
 
            DatabaseReference agent_updateDB=mRoot.

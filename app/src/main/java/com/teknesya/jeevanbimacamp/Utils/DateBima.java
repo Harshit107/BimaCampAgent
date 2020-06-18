@@ -7,7 +7,7 @@ import androidx.annotation.RequiresApi;
 
 import java.text.SimpleDateFormat;
 
-public class Date {
+public class DateBima {
 
    @RequiresApi(api = Build.VERSION_CODES.N)
 
@@ -20,4 +20,15 @@ public class Date {
        String formattedDate = df.format(c);
        return formattedDate;
    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static String getDateMonth()
+    {
+        Calendar cd=Calendar.getInstance();
+        cd.add(Calendar.DATE,1);
+        int mm=cd.get(Calendar.MONTH);
+        int dd=cd.get(Calendar.DATE);
+        ++mm;
+        String formattedDate=(String.valueOf(dd)+"-"+String.valueOf(mm)  );
+        return formattedDate;
+    }
 }

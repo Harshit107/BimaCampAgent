@@ -66,6 +66,7 @@ public class UserForm extends AppCompatActivity {
 
     RelativeLayout initialFocus;
     FirebaseUser firebaseUser;
+    String dB,dM="default";
 //
 //    View progress;
 //    TextView ptext;
@@ -98,11 +99,14 @@ public class UserForm extends AppCompatActivity {
                 int day = cldr.get(Calendar.DAY_OF_MONTH);
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
+
                 // date picker dialog
+
                 picker = new DatePickerDialog(UserForm.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                dB=dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
                                 dob.setText("DOB " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
@@ -123,6 +127,7 @@ public class UserForm extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                dM=dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
                                 anniversary.setText("Anniversary " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
@@ -318,6 +323,8 @@ public class UserForm extends AppCompatActivity {
                     it.putExtra("name",cName);
                     it.putExtra("email",cEmail);
                     it.putExtra("phone",cPhone);
+                    it.putExtra("dB",dB);
+                    it.putExtra("dM",dM);
                     it.putExtra("totalFamily",cTotalFamily);
                     it.putExtra("state",cState);
                     it.putExtra("area",cArea);

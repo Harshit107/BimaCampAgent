@@ -28,7 +28,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import es.dmoral.toasty.Toasty;
 
@@ -47,7 +49,8 @@ public class UserForm2 extends AppCompatActivity {
     EditText maturity;
     int counter =0;
     ImageView premiumDrop,planDrop;
-
+    String dateBirth="",dateMarriage="default";
+    DatabaseReference updateImportntDates;
 
 
     @Override
@@ -55,6 +58,8 @@ public class UserForm2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_form2);
         init();
+        mAuth =FirebaseAuth.getInstance();
+        root= FirebaseDatabase.getInstance().getReference();
 
         final Intent get=getIntent();
         String cName = "";
@@ -82,12 +87,18 @@ public class UserForm2 extends AppCompatActivity {
         String cLandMark = "";
         cLandMark = get.getStringExtra("landMark");
 
+        dateBirth = get.getStringExtra("dB");
+        dateMarriage = get.getStringExtra("dM");
+
         upload=findViewById(R.id.update);
         pbar=new ProgressDialog(this);
         pbar.setMessage("please wait");
         pbar.setCancelable(false);
         pbar.setCanceledOnTouchOutside(false);
         pbar.show();
+
+        updateImportntDates=root.child("users").child("agent")
+                .child(mAuth.getUid()).child("date");
 
         ImageView back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -97,8 +108,9 @@ public class UserForm2 extends AppCompatActivity {
             }
         });
 
-        mAuth =FirebaseAuth.getInstance();
-        root= FirebaseDatabase.getInstance().getReference();
+
+
+
         getPlan=root.child("plan");
         countCustomer();
 
@@ -237,9 +249,18 @@ public class UserForm2 extends AppCompatActivity {
                 }
                 else
                 {
+                    counter=+1;
                     DatabaseReference userData=FirebaseDatabase.getInstance().getReference()
                         .child("users").child("agent")
-                        .child(mAuth.getUid()).child("customer").child(String.valueOf(++counter));
+                        .child(mAuth.getUid()).child("customer").child(String.valueOf(counter));
+
+
+                    if(!dateMarriage.equals("default"))
+                        updateImportntDates.child(dateMarriage).child("marriage").child(String.valueOf(counter)).setValue(finalCName);
+
+                    updateImportntDates.child(dateBirth).child("birthday").child(String.valueOf(counter)).setValue(finalCName);
+
+
 
                     userData.child("detail").child("name").setValue(finalCName);
                     userData.child("detail").child("email").setValue(finalCEmail);
@@ -320,6 +341,7 @@ public class UserForm2 extends AppCompatActivity {
         premium=findViewById(R.id.premium);
         planDrop=findViewById(R.id.planDrop);
         premiumDrop=findViewById(R.id.premiumDrop);
+
     }
 
     @Override

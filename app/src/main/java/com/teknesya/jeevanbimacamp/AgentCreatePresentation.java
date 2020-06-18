@@ -5,7 +5,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.app.Presentation;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -22,7 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.teknesya.jeevanbimacamp.Utils.Date;
+import com.teknesya.jeevanbimacamp.Utils.DateBima;
 import com.teknesya.jeevanbimacamp.Utils.Deduct;
 
 import java.util.Random;
@@ -143,7 +142,7 @@ public class AgentCreatePresentation extends AppCompatActivity {
         updatePresentationstring.child("nodeid").setValue(presentationUniqueIdl);
         updatePresentationstring.child("share").setValue("false");
         updatePresentationstring.child("string").setValue(string);
-        updatePresentationstring.child("date").setValue(Date.getDate())
+        updatePresentationstring.child("date").setValue(DateBima.getDate())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

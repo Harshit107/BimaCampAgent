@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -28,7 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.teknesya.jeevanbimacamp.Utils.Date;
+import com.teknesya.jeevanbimacamp.Utils.DateBima;
 import com.teknesya.jeevanbimacamp.Utils.MailSender;
 import com.teknesya.jeevanbimacamp.notification.NotificationReminder;
 
@@ -219,7 +218,7 @@ public class CustHomePage extends AppCompatActivity {
                                 updatePresentation.child("presentation").setValue(Integer.valueOf(nyReferralsuccessValue));
                             }
 
-                            successReferral.child("referral").child("success").child(Agent).child(mAuth.getUid()).setValue(Date.getDate());
+                            successReferral.child("referral").child("success").child(Agent).child(mAuth.getUid()).setValue(DateBima.getDate());
                             successReferral.child("referral").child("pending").child(Agent).child(mAuth.getUid()).removeValue();
 
                         }
@@ -241,7 +240,7 @@ public class CustHomePage extends AppCompatActivity {
         });
 
 
-        change_account.child("date").setValue(Date.getDate());
+        change_account.child("date").setValue(DateBima.getDate());
         change_account.child("referralcode").setValue(referral_value);
 
         updateinfo = mRoot.child("users").child("customer")

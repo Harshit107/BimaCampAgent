@@ -46,7 +46,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.teknesya.jeevanbimacamp.Utils.Date;
+import com.teknesya.jeevanbimacamp.Utils.DateBima;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -249,7 +249,7 @@ public class LoginActivity extends AppCompatActivity {
         root.child("users").child("customer").child("registered").
                 child("detail").child(firebaseAuth.getUid()).child("token").setValue(devide_token);
         root.child("users").child("customer").child("registered").
-                child("detail").child(firebaseAuth.getUid()).child("lastlogin").setValue(Date.getDate());
+                child("detail").child(firebaseAuth.getUid()).child("lastlogin").setValue(DateBima.getDate());
         root.child("users").child("customer").child("registered").
                 child("detail").child(firebaseAuth.getUid()) .child("device").setValue(android.os.Build.MODEL);
         final DatabaseReference update_usertype = root.child("checkuser");
