@@ -81,7 +81,7 @@ public class AgentCreatePresentation extends AppCompatActivity {
                            builder.setPositiveButton("Buy Now ", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    startActivity(new Intent(AgentCreatePresentation.this,PresentationView.class));
+                                    startActivity(new Intent(AgentCreatePresentation.this, BuyPresentation.class));
                                     overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                                 }
                             }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

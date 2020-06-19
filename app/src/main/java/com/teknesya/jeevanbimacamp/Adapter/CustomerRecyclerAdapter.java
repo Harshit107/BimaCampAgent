@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -77,9 +76,9 @@ public class CustomerRecyclerAdapter extends RecyclerView.Adapter<CustomerRecycl
 
          final String id;
         id=listItems.get(position).getNodeId();
-        holder.Company.setText(listItem.getName());
-        holder.Address.setText(listItem.getEmail());
-        holder.Category.setText(listItem.getPlan());
+        holder.name.setText(listItem.getName());
+        holder.plan.setText(listItem.getEmail());
+        holder.email.setText(listItem.getPlan());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,15 +102,15 @@ public class CustomerRecyclerAdapter extends RecyclerView.Adapter<CustomerRecycl
 
     class ViewHolder extends RecyclerView.ViewHolder {
         CircleImageView Image;
-        TextView Address, Company, Category;
+        TextView plan, name, email;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             Image = (CircleImageView) itemView.findViewById(R.id.image);
 
-            Address = (TextView) itemView.findViewById(R.id.plan);
-            Company = (TextView) itemView.findViewById(R.id.name);
-            Category = (TextView) itemView.findViewById(R.id.email);
+            plan = (TextView) itemView.findViewById(R.id.plan);
+            name = (TextView) itemView.findViewById(R.id.name);
+            email = (TextView) itemView.findViewById(R.id.email);
         }
     }
 }

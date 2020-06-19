@@ -288,9 +288,9 @@ public class UserForm extends AppCompatActivity {
                     name.requestFocus();
                 } else if (gender.getText().toString().equals("Gender")) {
                     Toasty.error(getApplicationContext(), "Select Gender First", Toasty.LENGTH_LONG, true).show();
-                } else if (dob.getText().toString().equals("Date of Birth")) {
+                } else if (dob.getText().toString().isEmpty()) {
                     Toasty.error(getApplicationContext(), "Enter Your Birthday", Toasty.LENGTH_LONG, true).show();
-                } else if (mariatl_status.getText().toString().equals("Marital Status")) {
+                } else if (mariatl_status.getText().toString().isEmpty()) {
                     Toasty.error(getApplicationContext(), "Select Marital Status First", Toasty.LENGTH_LONG, true).show();
                 } else {
                     String cName = "";

@@ -1,0 +1,50 @@
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    android:elevation="5dp"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="5dp">
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:elevation="15dp"
+    android:layout_margin="5dp"
+    android:padding="10dp"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_marginLeft="5dp"
+        android:padding="5dp"
+        android:src="@drawable/ic_lens_black_24dp"
+        android:tint="@color/colorPrimary"
+        android:layout_width="20dp"
+        android:layout_gravity="center"
+        android:layout_height="20dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/key"
+        android:layout_width="match_parent"
+        android:layout_marginRight="60dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:background="@color/transparent"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        android:text="key"
+        android:gravity="center"/>
+    <ImageView
+        android:id="@+id/value"
+        android:layout_marginLeft="-50dp"
+        android:padding="5dp"
+        android:src="@drawable/ic_call_black_24dp"
+        android:tint="@color/colorPrimary"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:gravity="center"/>
+</LinearLayout>
+</androidx.cardview.widget.CardView>

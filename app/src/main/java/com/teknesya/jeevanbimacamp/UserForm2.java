@@ -31,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
@@ -47,10 +48,11 @@ public class UserForm2 extends AppCompatActivity {
     ProgressDialog pbar;
     TextView selectPlan,sumAssured,premium;
     EditText maturity;
-    int counter =0;
+  //  int counter =0;
     ImageView premiumDrop,planDrop;
     String dateBirth="",dateMarriage="default";
     DatabaseReference updateImportntDates;
+    String messageKey="";
 
 
     @Override
@@ -112,7 +114,7 @@ public class UserForm2 extends AppCompatActivity {
 
 
         getPlan=root.child("plan");
-        countCustomer();
+
 
         getPlandb();
 
@@ -249,16 +251,20 @@ public class UserForm2 extends AppCompatActivity {
                 }
                 else
                 {
-                    counter=+1;
+                    DatabaseReference countCustomer=FirebaseDatabase.getInstance().getReference()
+                            .child("users").child("agent")
+                            .child(mAuth.getUid()).child("customer");
+                    messageKey=countCustomer.push().getKey();
+
                     DatabaseReference userData=FirebaseDatabase.getInstance().getReference()
                         .child("users").child("agent")
-                        .child(mAuth.getUid()).child("customer").child(String.valueOf(counter));
+                        .child(mAuth.getUid()).child("customer").child(String.valueOf(messageKey));
 
 
                     if(!dateMarriage.equals("default"))
-                        updateImportntDates.child(dateMarriage).child("marriage").child(String.valueOf(counter)).setValue(finalCName);
-
-                    updateImportntDates.child(dateBirth).child("birthday").child(String.valueOf(counter)).setValue(finalCName);
+                        updateImportntDates.child(dateMarriage).child("marriage").child(String.valueOf(messageKey)).setValue(finalCName);
+                    if(!dateBirth.equals("default"))
+                    updateImportntDates.child(dateBirth).child("birthday").child(String.valueOf(messageKey)).setValue(finalCName);
 
 
 
@@ -284,6 +290,8 @@ public class UserForm2 extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             Toasty.success(getApplicationContext(),"Success",Toasty.LENGTH_LONG,true).show();
+                            startActivity(new Intent(getApplicationContext(),AgentMainActivity.class));
+                            overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                             pbar.dismiss();
                         }
                     })
@@ -348,21 +356,5 @@ public class UserForm2 extends AppCompatActivity {
     public void onBackPressed() {
         finish();
     }
-    public void countCustomer()
-    {
-        DatabaseReference countCustomer=FirebaseDatabase.getInstance().getReference()
-                .child("users").child("agent")
-                .child(mAuth.getUid()).child("customer");
-        countCustomer.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                counter=(int)dataSnapshot.getChildrenCount();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 }

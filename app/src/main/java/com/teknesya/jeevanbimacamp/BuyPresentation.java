@@ -26,7 +26,7 @@ import co.ceryle.radiorealbutton.RadioRealButton;
 import co.ceryle.radiorealbutton.RadioRealButtonGroup;
 import es.dmoral.toasty.Toasty;
 
-public class PresentationView extends AppCompatActivity {
+public class BuyPresentation extends AppCompatActivity {
 
     TextView walletBalance, presentation, insufficient;
     Button butNow;
@@ -43,7 +43,7 @@ public class PresentationView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_presentation_view);
+        setContentView(R.layout.activity_buy_presentation);
 
         insufficient=findViewById(R.id.insufficient);
         walletBalance = findViewById(R.id.wallet_balance);
@@ -100,7 +100,7 @@ public class PresentationView extends AppCompatActivity {
             @Override
             public void onClickedButton(RadioRealButton button, int position) {
                 rechargingAmount = getAmount(position);
-                Toasty.info(PresentationView.this, String.valueOf(rechargingAmount), Toasty.LENGTH_SHORT, true).show();
+                Toasty.info(BuyPresentation.this, String.valueOf(rechargingAmount), Toasty.LENGTH_SHORT, true).show();
 
 
             }
@@ -186,7 +186,7 @@ public class PresentationView extends AppCompatActivity {
                                 "Thankyou for Using JeevanBimacamp.Use Your Presentation Before it gets Expired");
 
                         Toasty.success(getApplicationContext(), "Recharge Successful", Toasty.LENGTH_LONG, true).show();
-                        Intent it = new Intent(getApplicationContext(), PresentationView.class);
+                        Intent it = new Intent(getApplicationContext(), BuyPresentation.class);
                         progress.setVisibility(View.GONE);
                         finish();
                         startActivity(it);
@@ -209,7 +209,7 @@ public class PresentationView extends AppCompatActivity {
     private boolean validateAmount(int rechargeAmount) {
 
         if(Integer.parseInt(walletPrevAmount)<rechargeAmount) {
-            new AlertDialog.Builder(PresentationView.this)
+            new AlertDialog.Builder(BuyPresentation.this)
                     .setTitle("Insufficient Balance")
                     .setMessage("Recharge Your Wallet to Buy More Presentation")
                     .setPositiveButton("Recharge", new DialogInterface.OnClickListener() {

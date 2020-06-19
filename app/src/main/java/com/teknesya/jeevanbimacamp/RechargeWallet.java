@@ -1,6 +1,5 @@
 package com.teknesya.jeevanbimacamp;
 
-import android.app.Presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -97,7 +96,7 @@ public class RechargeWallet extends AppCompatActivity {
                         MailSender mailSender=new MailSender(RechargeWallet.this,nMsg,title,eMail);
                         mailSender.sendEmail();
                   Toasty.success(getApplicationContext(),"Recharge Successful",Toasty.LENGTH_LONG,true).show();
-                        Intent it=new Intent(getApplicationContext(), PresentationView.class);
+                        Intent it=new Intent(getApplicationContext(), BuyPresentation.class);
                         progress.setVisibility(View.GONE);
                         finish();
                         startActivity(it);

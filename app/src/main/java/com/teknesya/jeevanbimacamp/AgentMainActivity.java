@@ -1,17 +1,12 @@
 package com.teknesya.jeevanbimacamp;
 
-import android.app.AlarmManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.app.PendingIntent;
 
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -33,6 +28,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.teknesya.jeevanbimacamp.Fragment.HomeFragment;
+import com.teknesya.jeevanbimacamp.Fragment.ServiceFragment;
 import com.teknesya.jeevanbimacamp.Fragment.SettingFragment;
 import com.teknesya.jeevanbimacamp.model.IOnBackPressed;
 
@@ -131,7 +127,7 @@ public class AgentMainActivity extends AppCompatActivity implements NavigationVi
                 return true;
 
             case R.id.nav_presentation:
-                Intent it=new Intent(getApplicationContext(),PresentationView.class);
+                Intent it=new Intent(getApplicationContext(), BuyPresentation.class);
                 startActivity(it);
                 return true;
 

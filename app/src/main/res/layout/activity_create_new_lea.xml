@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateNewLead">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appbar"
+        android:layout_alignParentTop="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/img"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_arrow_back_black_24dp"
+                    android:scaleType="fitStart"
+                   />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:text="Lead"
+                    android:layout_toRightOf="@id/img"
+                    android:id="@+id/tv_name"
+                    android:gravity="center_vertical"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#fff"
+                    android:layout_gravity="start"/>
+                <ImageView
+                    android:id="@+id/add_lead_db"
+                    android:layout_width="45dp"
+                    android:padding="7dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_add_box_black_24dp"
+                    android:scaleType="fitStart"
+                    android:layout_marginRight="30dp"
+
+                    android:layout_gravity="center_vertical"/>
+
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/addt"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:paddingLeft="10dp"
+        android:layout_below="@id/appbar"
+        android:paddingRight="10dp"
+
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:text="Update All Detail of Lead and click add button to Present top Right corner"
+        android:padding="3dp"
+        android:gravity="left"/>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:elevation="15dp"
+            android:id="@+id/lout"
+            android:layout_below="@id/addt"
+            android:background="@drawable/primarycolorborder"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/key"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp"
+                android:maxWidth="220dp"
+                android:paddingLeft="10dp"
+                android:background="@color/transparent"
+                android:paddingRight="10dp"
+                android:minWidth="100dp"
+                android:layout_height="wrap_content"
+                android:hint="Title *"
+                android:gravity="center"/>
+            <EditText
+                android:id="@+id/value"
+                android:layout_marginLeft="30dp"
+                android:textStyle="italic"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:textSize="18dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Value *"
+                android:gravity="center"/>
+        </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/lout"
+        android:layout_marginTop="10dp"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/item_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/addDetail"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="  Add Detail"
+        android:gravity="center"/>
+
+
+
+
+</RelativeLayout>

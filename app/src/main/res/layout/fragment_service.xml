@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/main_bg_two"
-    tools:context=".ServiceFragment">
+    android:background="@drawable/bg_serv">
 
 
     <ScrollView
@@ -103,6 +102,207 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/ivMenuDetail4"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_next"
+                        android:visibility="visible"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="0dp"
+                        tools:ignore="NotSibling" />
+                </RelativeLayout>
+            </FrameLayout>
+
+            <FrameLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_82sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:id="@+id/fAddLead"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_80sdp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_70sdp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="@dimen/_30sdp"
+                        android:layout_marginEnd="@dimen/_30sdp"
+                        app:cardCornerRadius="@dimen/_20sdp"
+                        app:cardElevation="@dimen/_3sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/_30sdp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lvMenuTitle4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:fontFamily="@font/opensanssemibold"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_13sdp"
+                                android:text="Create New Lead" />
+
+
+                            <TextView
+                                android:id="@+id/lvMenuItems4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/opensansregular"
+                                android:text="Schedule fresh call from lead."
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:paddingRight="20dp"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_11sdp"
+                                />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_80sdp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/lvMenu4"
+                        android:layout_width="@dimen/_55sdp"
+                        android:layout_height="@dimen/_55sdp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_toLeftOf="@+id/homePresentation"
+                        android:background="@drawable/imege_elevation"
+                        android:elevation="@dimen/_5sdp"
+                        android:padding="15dp"
+                        android:src="@drawable/lead"
+                        android:visibility="visible"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="1dp"
+                        tools:ignore="NotSibling" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_80sdp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/lvMenuDetail4"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_next"
+                        android:visibility="visible"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="0dp"
+                        tools:ignore="NotSibling" />
+                </RelativeLayout>
+            </FrameLayout>
+            <FrameLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_82sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:id="@+id/fViewLead"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_80sdp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_70sdp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="@dimen/_30sdp"
+                        android:layout_marginEnd="@dimen/_30sdp"
+                        app:cardCornerRadius="@dimen/_20sdp"
+                        app:cardElevation="@dimen/_3sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/_30sdp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/vvMenuTitle4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:fontFamily="@font/opensanssemibold"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_13sdp"
+                                android:text="View Lead" />
+
+
+                            <TextView
+                                android:id="@+id/vvMenuItems4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/opensansregular"
+                                android:text="View Your All Lead Here"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:paddingRight="20dp"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_11sdp"
+                                />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_80sdp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/vvMenu4"
+                        android:layout_width="@dimen/_55sdp"
+                        android:layout_height="@dimen/_55sdp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_toLeftOf="@+id/homePresentation"
+                        android:background="@drawable/imege_elevation"
+                        android:elevation="@dimen/_5sdp"
+                        android:padding="15dp"
+                        android:src="@drawable/viewcustomer"
+                        android:visibility="visible"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="1dp"
+                        tools:ignore="NotSibling" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_80sdp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/vvMenuDetail4"
                         android:layout_width="@dimen/_35sdp"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_alignParentEnd="true"

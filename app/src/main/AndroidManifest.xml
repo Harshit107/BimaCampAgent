@@ -19,11 +19,13 @@
         android:roundIcon="@mipmap/logo_noshadow"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustPresentationView"/>
+        <activity android:name=".ViewLead"></activity>
+        <activity android:name=".CreateNewLead" />
+        <activity android:name=".CustPresentationView" />
         <activity android:name=".AgentCreatePresentation" />
         <activity android:name=".AgentViewPresentation" />
         <activity android:name=".AgentAnimationView" />
-        <activity android:name=".PresentationView" />
+        <activity android:name=".BuyPresentation" />
         <activity android:name=".AgentReferralHistory" />
         <activity android:name=".Myreferral" />
         <activity android:name=".AgentNotification" />
@@ -62,9 +64,10 @@
         <activity android:name=".Utils.MailSender" />
         <activity android:name=".CustAnimationView" />
         <activity android:name=".AlarmSetting" />
-        <receiver android:name=".Utils.BroadCastReceiver" >
+
+        <receiver android:name=".Utils.BroadCastReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
     </application>
