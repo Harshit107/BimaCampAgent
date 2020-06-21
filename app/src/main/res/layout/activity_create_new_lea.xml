@@ -121,7 +121,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
+            android:layout_marginBottom="60dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="2dp"
             android:orientation="vertical">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/item_list"
@@ -139,7 +142,7 @@
         android:background="@color/colorPrimary"
         android:layout_marginTop="5dp"
         android:textColor="@color/white"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:text="  Add Detail"
         android:gravity="center"/>

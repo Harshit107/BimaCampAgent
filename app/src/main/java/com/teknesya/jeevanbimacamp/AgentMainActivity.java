@@ -183,7 +183,7 @@ public class AgentMainActivity extends AppCompatActivity implements NavigationVi
                 case R.id.nav_home:
                     selectFragment = new HomeFragment();
                     break;
-                case R.id.nav_wallet:
+                case R.id.nav_service:
                     selectFragment = new ServiceFragment();
                     break;
 

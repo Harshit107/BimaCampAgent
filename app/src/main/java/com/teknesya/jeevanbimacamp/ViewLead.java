@@ -91,8 +91,9 @@ public class ViewLead extends AppCompatActivity {
 
                     String name=dataSnapshot.child("Name").getValue().toString();
                     String phone=dataSnapshot.child("Phone").getValue().toString();
+                    String nodeID=dataSnapshot.getKey();
 
-                    ItemLead il=new ItemLead(name,phone);
+                    ItemLead il=new ItemLead(name,phone,nodeID);
                     messagelist.add(il);
                     successAdapter.notifyDataSetChanged();
                     //recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount());
@@ -125,6 +126,7 @@ public class ViewLead extends AppCompatActivity {
 
             }
         });
+
 
 
 

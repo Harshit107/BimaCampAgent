@@ -9,25 +9,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.teknesya.jeevanbimacamp.ItemLead;
 import com.teknesya.jeevanbimacamp.R;
+import com.teknesya.jeevanbimacamp.UpdateLeadDetail;
 import com.teknesya.jeevanbimacamp.ViewLeadDetail;
 
 import java.util.ArrayList;
 
-import es.dmoral.toasty.Toasty;
-
-public class LeadViewAdapter extends RecyclerView.Adapter<LeadViewAdapter.ViewHolder> {
+public class LeadViewDetailAdapter extends RecyclerView.Adapter<LeadViewDetailAdapter.ViewHolder> {
 
     //All methods in this adapter are required for a bare minimum recyclerview adapter
     private ArrayList<ItemLead> itemList;
     // Constructor of the class
     Context context;
-    public LeadViewAdapter(ArrayList<ItemLead> itemList, Context context) {
+    public LeadViewDetailAdapter(ArrayList<ItemLead> itemList, Context context) {
         this.itemList = itemList;
         this.context=context;
     }
@@ -40,9 +39,10 @@ public class LeadViewAdapter extends RecyclerView.Adapter<LeadViewAdapter.ViewHo
 
 
     // specify the row layout file and click for each row
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lead_iten, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         ViewHolder myViewHolder = new ViewHolder(view);
         return myViewHolder;
     }
@@ -56,25 +56,8 @@ public class LeadViewAdapter extends RecyclerView.Adapter<LeadViewAdapter.ViewHo
         pbar.setCanceledOnTouchOutside(false);
 
         holder.key.setText(itemList.get(listPosition).getKey());
-        holder.phone=(itemList.get(listPosition).getValue());
-        holder.value.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+holder.phone));
-                context.startActivity(intent);
-            }
-        });
-        holder.itemView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                // get position
-               // Toasty.success(context,itemList.get(listPosition).getNodeId()).show();
-                Intent it=new Intent(context,ViewLeadDetail.class);
-                it.putExtra("nodeId",itemList.get(listPosition).getNodeId());
-                context.startActivity(it);
-            }
-        });
+        holder.value.setText(itemList.get(listPosition).getValue());
+
 
 
     }
@@ -82,12 +65,11 @@ public class LeadViewAdapter extends RecyclerView.Adapter<LeadViewAdapter.ViewHo
     // Static inner class to initialize the views of rows
     static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView key;
-        String phone="";
-        public ImageView value;
+        public TextView value;
         public ViewHolder(View itemView) {
             super(itemView);
             key = (TextView) itemView.findViewById(R.id.key);
-            value = (ImageView) itemView.findViewById(R.id.value);
+            value = (TextView) itemView.findViewById(R.id.value);
         }
 
 

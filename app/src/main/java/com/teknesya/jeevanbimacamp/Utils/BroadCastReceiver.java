@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Vibrator;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,15 +16,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.teknesya.jeevanbimacamp.notification.NotificationReminder;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
-import es.dmoral.toasty.Toasty;
 
 public class BroadCastReceiver extends BroadcastReceiver {
 
@@ -47,29 +40,50 @@ public class BroadCastReceiver extends BroadcastReceiver {
             nameDatabase = mRoot.child("users").child("agent").child(mAuth.getUid()).child("customer");
 
 
-            checkUserDates.addListenerForSingleValueEvent(new ValueEventListener() {
-                @RequiresApi(api = Build.VERSION_CODES.N)
+            checkUserDates.addChildEventListener(new ChildEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    String recivedDate;
+                    recivedDate = dataSnapshot.getKey().toString();
 
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        String recivedDate;
-                        recivedDate = snapshot.getKey().toString();
+                    if (recivedDate.startsWith(DateBima.getTommorowDateMonth())) {
+                        Vibrator vibrator = (Vibrator) context
+                                .getSystemService(Context.VIBRATOR_SERVICE);
+                        vibrator.vibrate(2000);
+                        NotificationReminder n = new NotificationReminder
+                                (context, "Alarm", "Birthday reminder for Tomorrow ");
 
-                        if (recivedDate.startsWith(DateBima.getDateMonth())) {
-                            Vibrator vibrator = (Vibrator) context
-                                    .getSystemService(Context.VIBRATOR_SERVICE);
-                            vibrator.vibrate(2000);
-                            NotificationReminder n = new NotificationReminder
-                                    (context, "Alarm", "Birthday reminder for Tomorrow ");
-
-                        }
                     }
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Toasty.error(context, databaseError.getMessage()).show();
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    String recivedDate;
+                    recivedDate = dataSnapshot.getKey().toString();
+
+                    if (recivedDate.startsWith(DateBima.getTommorowDateMonth())) {
+                        Vibrator vibrator = (Vibrator) context
+                                .getSystemService(Context.VIBRATOR_SERVICE);
+                        vibrator.vibrate(2000);
+                        NotificationReminder n = new NotificationReminder
+                                (context, "Alarm", "Birthday reminder for Tomorrow ");
+
+                    }
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
                 }
             });
         }

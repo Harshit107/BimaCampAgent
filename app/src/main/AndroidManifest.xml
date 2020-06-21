@@ -19,7 +19,9 @@
         android:roundIcon="@mipmap/logo_noshadow"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewLead"></activity>
+        <activity android:name=".AgentTodaysReminder"></activity>
+        <activity android:name=".ViewLeadDetail" />
+        <activity android:name=".ViewLead" />
         <activity android:name=".CreateNewLead" />
         <activity android:name=".CustPresentationView" />
         <activity android:name=".AgentCreatePresentation" />
@@ -64,6 +66,7 @@
         <activity android:name=".Utils.MailSender" />
         <activity android:name=".CustAnimationView" />
         <activity android:name=".AlarmSetting" />
+        <activity android:name=".UpdateLeadDetail" />
 
         <receiver android:name=".Utils.BroadCastReceiver">
             <intent-filter>

@@ -21,10 +21,20 @@ public class DateBima {
        return formattedDate;
    }
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static String getDateMonth()
+    public static String getTommorowDateMonth()
     {
         Calendar cd=Calendar.getInstance();
         cd.add(Calendar.DATE,1);
+        int mm=cd.get(Calendar.MONTH);
+        int dd=cd.get(Calendar.DATE);
+        ++mm;
+        String formattedDate=(String.valueOf(dd)+"-"+String.valueOf(mm)  );
+        return formattedDate;
+    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static String getTodaysDateMonth()
+    {
+        Calendar cd=Calendar.getInstance();
         int mm=cd.get(Calendar.MONTH);
         int dd=cd.get(Calendar.DATE);
         ++mm;

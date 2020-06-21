@@ -106,7 +106,7 @@ public class UserForm extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                dB=dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+                                dB=dayOfMonth + "-" + (monthOfYear + 1) ;
                                 dob.setText("DOB " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
@@ -127,7 +127,7 @@ public class UserForm extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                dM=dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+                                dM=dayOfMonth + "-" + (monthOfYear + 1);
                                 anniversary.setText("Anniversary " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);

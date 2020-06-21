@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.teknesya.jeevanbimacamp.Adapter.LeadViewAdapter;
+import com.teknesya.jeevanbimacamp.AgentTodaysReminder;
 import com.teknesya.jeevanbimacamp.AlarmSetting;
 import com.teknesya.jeevanbimacamp.CreateNewLead;
 import com.teknesya.jeevanbimacamp.R;
@@ -22,7 +23,7 @@ import com.teknesya.jeevanbimacamp.ViewLead;
 public class ServiceFragment extends Fragment {
 
     FrameLayout fSetReminder;
-    FrameLayout fCreateLead,fViewLead;
+    FrameLayout fCreateLead,fViewLead,fTodaysReminder;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class ServiceFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fSetReminder=getActivity().findViewById(R.id.fSetReminder);
+        fTodaysReminder=getActivity().findViewById(R.id.fTodayReminder);
 
         fSetReminder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +44,15 @@ public class ServiceFragment extends Fragment {
                 startActivity(it);
             }
         });
+
+        fTodaysReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it=new Intent(getContext(), AgentTodaysReminder.class);
+                startActivity(it);
+            }
+        });
+
         fCreateLead=getActivity().findViewById(R.id.fAddLead);
         fCreateLead.setOnClickListener(new View.OnClickListener() {
             @Override
