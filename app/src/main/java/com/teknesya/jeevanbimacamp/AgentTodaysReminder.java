@@ -40,7 +40,7 @@ public class AgentTodaysReminder extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(myPagerAddapter);
 
-        
+
 
 
 

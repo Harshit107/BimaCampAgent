@@ -22,10 +22,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.teknesya.jeevanbimacamp.Adapter.TodaysScheduleAdapter;
+import com.teknesya.jeevanbimacamp.Adapter.CustomerRecyclerAdapter;
+import com.teknesya.jeevanbimacamp.Adapter.FreshCallAdapter;
 import com.teknesya.jeevanbimacamp.ItemLead;
 import com.teknesya.jeevanbimacamp.R;
 import com.teknesya.jeevanbimacamp.Utils.DateBima;
+import com.teknesya.jeevanbimacamp.model.CustomerlListings;
 
 import java.util.ArrayList;
 
@@ -44,9 +46,10 @@ public class BirthDay extends Fragment {
     private FirebaseAuth mauth;
     private DatabaseReference userReference, groupnameref;
     private ScrollView scrollView;
-    private final ArrayList<ItemLead> messagelist = new ArrayList<>();
-    private TodaysScheduleAdapter todaysFreshAdapter;
+    //private final ArrayList<ItemLead> messagelist = new ArrayList<>();
+    private CustomerRecyclerAdapter todaysFreshAdapter;
     private RecyclerView recyclerView;
+    ArrayList <CustomerlListings> listItems = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -60,7 +63,7 @@ public class BirthDay extends Fragment {
        // Toasty.info(getContext(),todaysDate).show();
         mauth = FirebaseAuth.getInstance();
 
-        todaysFreshAdapter = new TodaysScheduleAdapter(messagelist,getApplicationContext());
+        todaysFreshAdapter = new CustomerRecyclerAdapter(listItems,getApplicationContext(),this);
         recyclerView = (RecyclerView) view.findViewById(R.id.freshRecycler);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -110,12 +113,31 @@ public class BirthDay extends Fragment {
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                                    String name = dataSnapshot.child("Name").getValue().toString();
-                                    String phone = dataSnapshot.child("Phone").getValue().toString();
-                                    ItemLead data = new ItemLead(name, phone, nodeId);
-                                    messagelist.add(data);
+//                                    String name = dataSnapshot.child("Name").getValue().toString();
+//                                    String phone = dataSnapshot.child("Phone").getValue().toString();
+
+                                    String name =  dataSnapshot.child("detail").child("name").getValue().toString();
+                                    String email =  dataSnapshot.child("detail").child("email").getValue().toString();
+                                    String plan =  dataSnapshot.child("detail").child("gender").getValue().toString();
+                                    String image = "";
+                                    try {
+                                        image =  dataSnapshot.child("detail").child("image").getValue().toString();
+                                    } catch (Exception e) {
+                                        image = "Default";
+                                    }
+
+                                    String nodeId = dataSnapshot.getKey();
+                                    CustomerlListings javamesssage = new CustomerlListings(name, image, plan, email, nodeId);
+                                    listItems.add(javamesssage);
                                     todaysFreshAdapter.notifyDataSetChanged();
-                                    recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount());
+
+
+
+
+//                                    ItemLead data = new ItemLead(name, phone, nodeId);
+//                                    messagelist.add(data);
+//                                    todaysFreshAdapter.notifyDataSetChanged();
+//                                    recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount());
                                     progress.setVisibility(View.GONE);
                                 }
 

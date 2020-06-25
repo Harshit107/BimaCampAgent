@@ -1,13 +1,12 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UpComingEventDetail">
 
-
-
-
+    <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,49 +20,51 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:id="@+id/back"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@drawable/logo"
+                    android:layout_alignParentLeft="true"
                     android:scaleType="fitStart"
                     android:layout_gravity="center_vertical"/>
                 <TextView
+                    android:layout_toRightOf="@id/back"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
-                    android:text="My Lead"
-                    android:id="@+id/tv_name"
+                    android:text="Upcoming Event"
+                    android:id="@+id/upcomingEventName"
                     android:gravity="center_vertical"
                     android:textSize="20dp"
                     android:layout_marginLeft="10dp"
                     android:textColor="#fff"
                     android:layout_gravity="start"/>
-            </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:text="Date"
+                    android:drawableRight="@drawable/ic_date_range_black_24dp"
+                    android:drawableTint="@color/white"
+                    android:drawablePadding="10dp"
+                    android:id="@+id/date"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#fff"
+                    android:layout_gravity="start"/>
+
+            </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/noLead"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:visibility="gone"
-        android:text="No Lead Found"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        />
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/appbar"
-        android:id="@+id/recyclerview_lead"/>
-    <include
-        android:id="@+id/progress_bar"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:visibility="gone"
-        layout="@layout/progress_fragment"/>
+        android:id="@+id/upcomingRecycler"/>
 </RelativeLayout>

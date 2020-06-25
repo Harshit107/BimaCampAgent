@@ -33,20 +33,21 @@ public class MailSender {
      public  void sendEmail() {
 
 
-        GMailSender.withAccount("harshitkeshari765@gmail.com", "harshhit765")
+        GMailSender.withAccount("jeevanbimacamp@gmail.com", "youtubekapassword")
                 .withTitle(title)
                 .withBody(body)
-                .withSender("JeevanBimacamp")
+                .withSender("Jeevan BimaCamp")
                 .toEmailAddress(reciverEmail) // one or multiple addresses separated by a comma
                 .withListenner(new GmailListener() {
                     @Override
                     public void sendSuccess() {
-                        Toasty.success(context, "Success", Toast.LENGTH_SHORT,true).show();
+                        Log.d("Mail","Mail Success");
+                        //Toasty.success(context, "Success", Toast.LENGTH_SHORT,true).show();
                     }
 
                     @Override
                     public void sendFail(String err) {
-                        Log.d("MailError",err);
+                        Log.d("Mail",err);
                         //Toasty.error(context, "Fail"+err, Toast.LENGTH_SHORT,true).show();
                     }
                 })

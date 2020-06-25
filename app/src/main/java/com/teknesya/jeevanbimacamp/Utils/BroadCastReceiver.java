@@ -26,66 +26,130 @@ public class BroadCastReceiver extends BroadcastReceiver {
     DatabaseReference mRoot,checkUserDates,nameDatabase;
     ArrayList<String > name=new ArrayList<>();
     int count=0;
+    String msg="";
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onReceive(final Context context, Intent intent) {
 
-        InternetAvailablity i=new InternetAvailablity(context);
-        if(i.isInternetOn()) {
 
+        try
+        {
+             msg=intent.getStringExtra("msg");
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        //checking Internet Connectivity
+
+        InternetAvailablity i=new InternetAvailablity(context);
+        //if Internet is Connected
+        if(i.isInternetOn()) {
+        // Checking message Type
             mAuth = FirebaseAuth.getInstance();
             mRoot = FirebaseDatabase.getInstance().getReference();
             checkUserDates = mRoot.child("users").child("agent").child(mAuth.getUid()).child("date");
             nameDatabase = mRoot.child("users").child("agent").child(mAuth.getUid()).child("customer");
 
+            if(msg.equals("today")){
 
-            checkUserDates.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                    String recivedDate;
-                    recivedDate = dataSnapshot.getKey().toString();
+                checkUserDates.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                        String recivedDate;
+                        recivedDate = dataSnapshot.getKey().toString();
 
-                    if (recivedDate.startsWith(DateBima.getTommorowDateMonth())) {
-                        Vibrator vibrator = (Vibrator) context
-                                .getSystemService(Context.VIBRATOR_SERVICE);
-                        vibrator.vibrate(2000);
-                        NotificationReminder n = new NotificationReminder
-                                (context, "Alarm", "Birthday reminder for Tomorrow ");
+                        if (recivedDate.startsWith(DateBima.getTodaysDateMonth())) {
+                            Vibrator vibrator = (Vibrator) context
+                                    .getSystemService(Context.VIBRATOR_SERVICE);
+                            vibrator.vibrate(2000);
+                            NotificationReminder n = new NotificationReminder
+                                    (context, "Reminder", "You have Reminder For Today\nClick here To View");
+                        }
+                    }
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                        String recivedDate;
+                        recivedDate = dataSnapshot.getKey().toString();
+
+                        if (recivedDate.startsWith(DateBima.getTodaysDateMonth())) {
+                            Vibrator vibrator = (Vibrator) context
+                                    .getSystemService(Context.VIBRATOR_SERVICE);
+                            vibrator.vibrate(2000);
+                            NotificationReminder n = new NotificationReminder
+                                    (context, "Reminder", "You have Reminder For Today\nClick here To View");
+
+                        }
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
                     }
-                }
 
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                    String recivedDate;
-                    recivedDate = dataSnapshot.getKey().toString();
-
-                    if (recivedDate.startsWith(DateBima.getTommorowDateMonth())) {
-                        Vibrator vibrator = (Vibrator) context
-                                .getSystemService(Context.VIBRATOR_SERVICE);
-                        vibrator.vibrate(2000);
-                        NotificationReminder n = new NotificationReminder
-                                (context, "Alarm", "Birthday reminder for Tomorrow ");
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                     }
-                }
 
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
+                    }
+                });
 
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                }
+            }
+            else if (msg.equals("tomorrow")){
+                checkUserDates.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                        String recivedDate;
+                        recivedDate = dataSnapshot.getKey().toString();
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+                        if (recivedDate.startsWith(DateBima.getTommorowDateMonth())) {
+                            Vibrator vibrator = (Vibrator) context
+                                    .getSystemService(Context.VIBRATOR_SERVICE);
+                            vibrator.vibrate(2000);
+                            NotificationReminder n = new NotificationReminder
+                                    (context, "Reminder", "You have New Reminder For Tomorrow\nClick here To View");
+                        }
+                    }
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                        String recivedDate;
+                        recivedDate = dataSnapshot.getKey().toString();
 
-                }
-            });
+                        if (recivedDate.startsWith(DateBima.getTommorowDateMonth())) {
+                            Vibrator vibrator = (Vibrator) context
+                                    .getSystemService(Context.VIBRATOR_SERVICE);
+                            vibrator.vibrate(2000);
+                            NotificationReminder n = new NotificationReminder
+                                    (context, "Reminder", "You have New Reminder For Tomorrow\nClick here To View");
+
+                        }
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+
+
         }
         else {
             NotificationReminder notificationReminder=new NotificationReminder

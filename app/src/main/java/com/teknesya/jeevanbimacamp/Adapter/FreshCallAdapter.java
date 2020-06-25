@@ -1,5 +1,6 @@
 package com.teknesya.jeevanbimacamp.Adapter;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,13 +20,13 @@ import com.teknesya.jeevanbimacamp.ViewLeadDetail;
 
 import java.util.ArrayList;
 
-public class TodaysScheduleAdapter extends RecyclerView.Adapter<TodaysScheduleAdapter.ViewHolder> {
+public class FreshCallAdapter extends RecyclerView.Adapter<FreshCallAdapter.ViewHolder> {
 
     //All methods in this adapter are required for a bare minimum recyclerview adapter
     private ArrayList<ItemLead> itemList;
     // Constructor of the class
     Context context;
-    public TodaysScheduleAdapter(ArrayList<ItemLead> itemList, Context context) {
+    public FreshCallAdapter(ArrayList<ItemLead> itemList, Context context, Activity activity) {
         this.itemList = itemList;
         this.context=context;
     }
@@ -40,7 +42,7 @@ public class TodaysScheduleAdapter extends RecyclerView.Adapter<TodaysScheduleAd
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lead_iten, parent, false);
         ViewHolder myViewHolder = new ViewHolder(view);
         return myViewHolder;
     }
@@ -54,7 +56,6 @@ public class TodaysScheduleAdapter extends RecyclerView.Adapter<TodaysScheduleAd
         pbar.setCanceledOnTouchOutside(false);
 
         holder.key.setText(itemList.get(listPosition).getKey());
-        holder.value.setText(itemList.get(listPosition).getValue());
 
         holder.value.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,11 +82,12 @@ public class TodaysScheduleAdapter extends RecyclerView.Adapter<TodaysScheduleAd
     // Static inner class to initialize the views of rows
     static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView key;
-        public TextView value;
+        public ImageView value;
+        public  String phone;
         public ViewHolder(View itemView) {
             super(itemView);
             key = (TextView) itemView.findViewById(R.id.key);
-            value = (TextView) itemView.findViewById(R.id.value);
+            value = (ImageView) itemView.findViewById(R.id.value);
         }
 
 

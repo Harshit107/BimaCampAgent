@@ -3,12 +3,15 @@ package com.teknesya.jeevanbimacamp;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,9 +24,22 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.itextpdf.text.Anchor;
+import com.itextpdf.text.Chapter;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.List;
+import com.itextpdf.text.ListItem;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Section;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.teknesya.jeevanbimacamp.Utils.DateBima;
 import com.teknesya.jeevanbimacamp.Utils.Deduct;
 
+import com.itextpdf.text.Document;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 
@@ -35,21 +51,23 @@ public class AgentCreatePresentation extends AppCompatActivity {
     DatabaseReference mRoot,checkUnique;
     String presentationUniqueIdl;
     String total_present="0";
-    String name="name",string="One reason may be that apples contain soluble fiber — the kind that can help lower your blood cholesterol levels.--" +
+   static String name="name",string="One reason may be that apples contain soluble fiber — the kind that can help lower your blood cholesterol levels.--\n" +
             "=> " +
-            "They also contain polyphenols, which have antioxidant effects. Many of these are concentrated in the peel.--" +
+            "They also contain polyphenols, which have antioxidant effects. Many of these are concentrated in the peel.--\n" +
             "=> " +
-            "One of these polyphenols is the flavonoid epicatechin, which may lower blood pressure.--" +
+            "One of these polyphenols is the flavonoid epicatechin, which may lower blood pressure.--\n" +
             "=> " +
-            "An analysis of studies found that high intakes of flavonoids were linked to a 20% lower risk of stroke (6Trusted Source).--" +
+            "An analysis of studies found that high intakes of flavonoids were linked to a 20% lower risk of stroke (6Trusted Source).--\n" +
             "=> " +
-            "Flavonoids can help prevent heart disease by lowering blood pressure, reducing “bad” LDL oxidation, and acting as antioxidants (7Trusted Source).--" +
+            "Flavonoids can help prevent heart disease by lowering blood pressure, reducing “bad” LDL oxidation, and acting as antioxidants (7Trusted Source).--\n" +
             "=> " +
-            "Another study comparing the effects of eating an apple a day to taking statins — a class of drugs known to lower cholesterol — concluded that apples would be almost as effective at reducing death from heart disease as the drugs (8Trusted Source).--" +
+            "Another study comparing the effects of eating an apple a day to taking statins — a class of drugs known to lower cholesterol — concluded that apples would be almost as effective at reducing death from heart disease as the drugs (8Trusted Source).--\n" +
             "=> " +
-            "However, since this was not a controlled trial, findings must be taken with a grain of salt.--" +
+            "However, since this was not a controlled trial, findings must be taken with a grain of salt.--\n" +
             "=> " +
-            "Another study linked consuming white-fleshed fruits and vegetables, such as apples and pears, to a reduced risk of stroke. For every 25 grams — about 1/5 cup of apple slices — consumed, the risk of stroke decreased by 9% (9Trusted Source).";
+            "Another study linked consuming white-fleshed fruits and vegetables, such as apples and pears, to a reduced risk of stroke. For every 25 grams — \nabout 1/5 cup of apple slices — consumed, the risk of stroke decreased by 9% (9Trusted Source).";
+
+
     View progress;
     TextView ptext;
 
@@ -67,47 +85,88 @@ public class AgentCreatePresentation extends AppCompatActivity {
         progress = findViewById(R.id.progress_bar);
         ptext = progress.findViewById(R.id.progress_text);
 
+        string+=string;
+
+
+//        create.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                if (checkerPresentation) {
+//                    progress.setVisibility(View.VISIBLE);
+//                    checkUniqueDB();
+//                } else {
+//                    Toasty.error(getApplicationContext(),"Insufficient Presentation").show();
+//                  AlertDialog.Builder builder=  new AlertDialog.Builder(AgentCreatePresentation.this);
+//                           builder.setPositiveButton("Buy Now ", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialogInterface, int i) {
+//                                    startActivity(new Intent(AgentCreatePresentation.this, BuyPresentation.class));
+//                                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+//                                }
+//                            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            dialogInterface.cancel();
+//                        }
+//                    })
+//                           .setMessage("Insufficient Presentation\nBuy Presentation Starting At Rs 1/- Only")
+//                           .setCancelable(false);
+//                    try {
+//                        builder  .create().show();
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//
+//            }
+//        });
+
+
+
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (checkerPresentation) {
-                    progress.setVisibility(View.VISIBLE);
-                    checkUniqueDB();
-                } else {
-                    Toasty.error(getApplicationContext(),"Insufficient Presentation").show();
-                  AlertDialog.Builder builder=  new AlertDialog.Builder(AgentCreatePresentation.this);
-                           builder.setPositiveButton("Buy Now ", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    startActivity(new Intent(AgentCreatePresentation.this, BuyPresentation.class));
-                                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                                }
-                            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    })
-                           .setMessage("Insufficient Presentation\nBuy Presentation Starting At Rs 1/- Only")
-                           .setCancelable(false);
-                    try {
-                        builder  .create().show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
+                Pdf1Activity.verifyStoragePermissions(AgentCreatePresentation.this);
+//                if(isStoragePermissionGranted()) {
+//                    new CreatePdf(getApplicationContext())
+//                            .setPdfName("FirstPdf")
+//                            .openPrintDialog(false)
+//                            .setContent("hi\nhello")
+//                            .setContentBaseUrl(null)
+//                            .setPageSize(PrintAttributes.MediaSize.ISO_A4)
+//                            .setContent(string)
+//                            .setContent("hi\nhello")
+//                            .setFilePath(Environment.getExternalStorageDirectory().getAbsolutePath() + "/MyPdf")
+//                            .setCallbackListener(new CreatePdf.PdfCallbackListener() {
+//                                @Override
+//                                public void onFailure(@NotNull String s) {
+//                                    // handle error
+//                                    Toasty.error(getApplicationContext(),s).show();
+//                                }
+//
+//                                @Override
+//                                public void onSuccess(@NotNull String s) {
+//                                    // do your stuff here
+//                                    Toasty.success(getApplicationContext(),s).show();
+//                                }
+//                            })
+//                            .create();
+//                }
             }
         });
 
     }
 
+
+
+    /* *************************  Presentation Method   ***************************/
+
     public void checkUniqueDB()
     {
-    checkUnique=mRoot.child("unique").child("presentation");
+        checkUnique=mRoot.child("unique").child("presentation");
         checkUnique.addListenerForSingleValueEvent(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -128,8 +187,6 @@ public class AgentCreatePresentation extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -168,13 +225,13 @@ public class AgentCreatePresentation extends AppCompatActivity {
 
     public  void getTotalPresent()
     {
-        DatabaseReference getPresentDB=mRoot.child("unique")
+        DatabaseReference getPresentDB=mRoot.child("agent").child(mAuth.getUid())
                 .child("presentation");
         getPresentDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 total_present=String.valueOf(dataSnapshot.getChildrenCount());
-               // Toasty.info(getApplicationContext(),total_present).show();
+                // Toasty.info(getApplicationContext(),total_present).show();
                 presentationUniqueIdl=getRandomNumberString();
 
             }
@@ -195,29 +252,30 @@ public class AgentCreatePresentation extends AppCompatActivity {
 
         FirebaseAuth mAuth=FirebaseAuth.getInstance();
         DatabaseReference mRoot=FirebaseDatabase.getInstance().getReference();
-            final DatabaseReference getPresentationDB = mRoot.child("users").child("customer")
-                    .child("registered").child("detail").child(mAuth.getUid());
+        final DatabaseReference getPresentationDB = mRoot.child("users").child("customer")
+                .child("registered").child("detail").child(mAuth.getUid());
 
 
-            getPresentationDB.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.hasChild("presentation")) {
-                        checkerPresentation = !dataSnapshot.child("presentation").getValue().toString().equals("0");
+        getPresentationDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild("presentation")) {
+                    checkerPresentation = !dataSnapshot.child("presentation").getValue().toString().equals("0");
 
-                    } else {
-                        getPresentationDB.child("presentation").setValue("0");
-                        checkerPresentation = false;
-                    }
+                } else {
+                    getPresentationDB.child("presentation").setValue("0");
+                    checkerPresentation = false;
                 }
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toasty.error(getApplicationContext(), databaseError.getMessage()).show();
-                }
-            });
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toasty.error(getApplicationContext(), databaseError.getMessage()).show();
+            }
+        });
 
-        }
+    }
+
 
 
 }

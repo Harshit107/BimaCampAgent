@@ -92,6 +92,7 @@ public class PendingReferral extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if (dataSnapshot.exists()) {
                     // displaymessage(dataSnapshot);
+
                     String userId=dataSnapshot.getKey().toString();
                     DatabaseReference getUserData=FirebaseDatabase.getInstance().getReference()
                             .child("users").child("customer").child("registered").child("detail")

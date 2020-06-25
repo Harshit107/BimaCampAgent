@@ -33,9 +33,8 @@ import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
-public class UserForm2 extends AppCompatActivity {
+public class AddPlan extends AppCompatActivity {
 
-    DatePickerDialog picker;
 
     FirebaseAuth mAuth;
     DatabaseReference root,getPlan,userData;
@@ -50,7 +49,7 @@ public class UserForm2 extends AppCompatActivity {
     ImageView premiumDrop,planDrop;
     String dateBirth="",dateMarriage="default";
     DatabaseReference updateImportntDates;
-    String messageKey="",planKeyID="";
+    String planKeyID="";
     int premiumInYear =1;
 
 
@@ -61,35 +60,6 @@ public class UserForm2 extends AppCompatActivity {
         init();
         mAuth =FirebaseAuth.getInstance();
         root= FirebaseDatabase.getInstance().getReference();
-
-        final Intent get=getIntent();
-        String cName = "";
-        cName = get.getStringExtra("name");
-        String cEmail = "";
-        cEmail = get.getStringExtra("email");
-        String cMaritalStatus = "";
-        cMaritalStatus = get.getStringExtra("maritalStatus");
-        String cGender = "";
-        cGender = get.getStringExtra("gender");
-        String cDob = "";
-        cDob = get.getStringExtra("dob");
-        String cPhone = "";
-        cPhone = get.getStringExtra("phone");
-        String cAnni = "";
-        cAnni = get.getStringExtra("ann");
-        String cTotalFamily = "";
-        cTotalFamily = get.getStringExtra("totalFamily");
-        String cState = "";
-        cState = get.getStringExtra("state");
-        String cArea = "";
-        cArea = get.getStringExtra("area");
-        String cPincode = "";
-        cPincode =get.getStringExtra("pincode");
-        String cLandMark = "";
-        cLandMark = get.getStringExtra("landMark");
-
-        dateBirth = get.getStringExtra("dB");
-        dateMarriage = get.getStringExtra("dM");
 
         upload=findViewById(R.id.update);
         pbar=new ProgressDialog(this);
@@ -122,7 +92,7 @@ public class UserForm2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                        final AlertDialog.Builder builder = new AlertDialog.Builder(UserForm2.this);
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(AddPlan.this);
                         builder.setTitle("Premium");
                         final String[] s;
                         //Toast.makeText(getApplicationContext(),Month+" "+date,Toast.LENGTH_LONG).show();
@@ -167,7 +137,7 @@ public class UserForm2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final AlertDialog.Builder builder = new AlertDialog.Builder(UserForm2.this);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(AddPlan.this);
                 builder.setTitle("Choose a Plan");
 
 // add a radio button list
@@ -207,18 +177,7 @@ public class UserForm2 extends AppCompatActivity {
 
             }
         });
-        final String finalCName = cName;
-        final String finalCEmail = cEmail;
-        final String finalCPhone = cPhone;
-        final String finalCGender = cGender;
-        final String finalCMaritalStatus = cMaritalStatus;
-        final String finalCAnni = cAnni;
-        final String finalCTotalFamily = cTotalFamily;
-        final String finalCDob = cDob;
-        final String finalCState = cState;
-        final String finalCArea = cArea;
-        final String finalCLandMark = cLandMark;
-        final String finalCPincode = cPincode;
+
         upload.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -251,39 +210,19 @@ public class UserForm2 extends AppCompatActivity {
                 }
                 else
                 {
-                    DatabaseReference countCustomer=FirebaseDatabase.getInstance().getReference()
-                            .child("users").child("agent")
-                            .child(mAuth.getUid()).child("customer");
-                    messageKey=countCustomer.push().getKey();
+
+                    Intent get=getIntent();
+                    final String nodeId=get.getStringExtra("nodeId");
 
                      userData=FirebaseDatabase.getInstance().getReference()
                         .child("users").child("agent")
-                        .child(mAuth.getUid()).child("customer").child(String.valueOf(messageKey));
+                        .child(mAuth.getUid()).child("customer").child(String.valueOf(nodeId));
 
 
-                    if(!dateMarriage.equals("default"))
-                        updateImportntDates.child(dateMarriage).child("marriage").child(String.valueOf(messageKey)).setValue(finalCName);
-                    if(!dateBirth.equals("default"))
-                    updateImportntDates.child(dateBirth).child("birthday").child(String.valueOf(messageKey)).setValue(finalCName);
-
-
-
-                    userData.child("detail").child("name").setValue(finalCName);
-                    userData.child("detail").child("email").setValue(finalCEmail);
-                    userData.child("detail").child("phone").setValue(finalCPhone);
-                    userData.child("detail").child("gender").setValue(finalCGender);
-                    userData.child("detail").child("maritalstatus").setValue(finalCMaritalStatus);
-                    userData.child("detail").child("anniversary").setValue(finalCAnni);
-                    userData.child("detail").child("totalfamily").setValue(finalCTotalFamily);
-                    userData.child("detail").child("dob").setValue(finalCDob);
-                    userData.child("detail").child("state").setValue(finalCState);
-                    userData.child("detail").child("area").setValue(finalCArea);
-                    userData.child("detail").child("landmark").setValue(finalCLandMark);
-                    userData.child("detail").child("pincode").setValue(finalCPincode);
                     userData.child("detail").child("plan").setValue(selectPlan.getText().toString());
 
-
                     planKeyID=userData.child("plan").push().getKey();
+
                     userData.child("plan").child(planKeyID).child("startdate").setValue(DateBima.getDate());
 
                     userData.child("plan").child(planKeyID).child("plan").setValue(selectPlan.getText().toString());
@@ -295,9 +234,12 @@ public class UserForm2 extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             convertPremium(premium.getText().toString());
+
                             updateMaturity();
-                            Toasty.success(getApplicationContext(),"Success",Toasty.LENGTH_LONG,true).show();
-                            startActivity(new Intent(getApplicationContext(),AgentMainActivity.class));
+
+                            Intent it=new Intent(getApplicationContext(),AgentMainActivity.class);
+                            it.putExtra("nodeId",nodeId);
+                            startActivity(it);
                             overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                             pbar.dismiss();
                         }
@@ -368,7 +310,7 @@ public class UserForm2 extends AppCompatActivity {
     public void updateMaturity()
     {
         int countMaturity=1;
-        int maturityPeriod= (premiumInYear/12) *Integer.parseInt(maturity.getText().toString());
+        int maturityPeriod= (12/premiumInYear) *Integer.parseInt(maturity.getText().toString());
         //int maturityPremium=Integer.parseInt(premium.getText().toString());
 
 
@@ -378,6 +320,8 @@ public class UserForm2 extends AppCompatActivity {
                     .child(String.valueOf(countMaturity)).setValue(date);
             countMaturity++;
         }
+        Toasty.success(getApplicationContext(),"Success",Toasty.LENGTH_LONG,true).show();
+
 
 
 
@@ -395,7 +339,7 @@ public class UserForm2 extends AppCompatActivity {
                 premiumInYear =6;
                 break;
             case "quarterly":
-                premiumInYear =4;
+                premiumInYear =3;
                 break;
             case "Monthly":
                 premiumInYear =1;

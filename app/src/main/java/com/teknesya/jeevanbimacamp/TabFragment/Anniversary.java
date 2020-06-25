@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.teknesya.jeevanbimacamp.Adapter.TodaysScheduleAdapter;
+import com.teknesya.jeevanbimacamp.Adapter.FreshCallAdapter;
 import com.teknesya.jeevanbimacamp.ItemLead;
 import com.teknesya.jeevanbimacamp.R;
 import com.teknesya.jeevanbimacamp.Utils.DateBima;
@@ -45,7 +45,7 @@ public class Anniversary extends Fragment {
     private DatabaseReference userReference, groupnameref;
     private ScrollView scrollView;
     private final ArrayList<ItemLead> messagelist = new ArrayList<>();
-    private TodaysScheduleAdapter todaysFreshAdapter;
+    private FreshCallAdapter todaysFreshAdapter;
     private RecyclerView recyclerView;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -60,7 +60,7 @@ public class Anniversary extends Fragment {
        // Toasty.info(getContext(),todaysDate).show();
         mauth = FirebaseAuth.getInstance();
 
-        todaysFreshAdapter = new TodaysScheduleAdapter(messagelist,getApplicationContext());
+        todaysFreshAdapter = new FreshCallAdapter(messagelist,getApplicationContext(),getActivity());
         recyclerView = (RecyclerView) view.findViewById(R.id.freshRecycler);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());

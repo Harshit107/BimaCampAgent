@@ -15,10 +15,27 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
         />
-    <androidx.recyclerview.widget.RecyclerView
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/freshRecycler"/>
+        android:id="@+id/freshcallLinear"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/freshcall"
+            android:scaleType="fitXY"
+            android:layout_margin="5dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:id="@+id/freshRecycler"/>
+
+    </LinearLayout>
+
     <include
         android:id="@+id/progress_bar"
         android:layout_height="match_parent"

@@ -1,5 +1,7 @@
 package com.teknesya.jeevanbimacamp.Fragment;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -32,7 +34,12 @@ import com.teknesya.jeevanbimacamp.Adapter.SliderAdapterExample;
 import com.teknesya.jeevanbimacamp.AgentCreatePresentation;
 import com.teknesya.jeevanbimacamp.AgentViewPresentation;
 import com.teknesya.jeevanbimacamp.R;
+import com.teknesya.jeevanbimacamp.SharedPreferenceValue;
 import com.teknesya.jeevanbimacamp.UserForm;
+import com.teknesya.jeevanbimacamp.Utils.BroadCastReceiver;
+
+import java.text.DateFormat;
+import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
@@ -49,6 +56,8 @@ public class HomeFragment extends Fragment {
 
     FrameLayout fAvailablePolicy,fAddCustomer,fViewCustomer,fCreatePresentation,fViewPresentation;
     TextView customerCount;
+    static  int tommorowsReminder=2;
+
 
 
     LinearLayout linearLayoutManager;
@@ -67,6 +76,10 @@ public class HomeFragment extends Fragment {
         TextView textview = (TextView)getActivity().findViewById(R.id.tv_name);
         textview.setText(getResources().getString(R.string.app_name));
         initilize();
+
+        alarmInitilie();
+
+
 
         SliderView sliderView =view. findViewById(R.id.imageSlider);
         SliderAdapterExample adapter = new SliderAdapterExample(getContext());
@@ -114,6 +127,34 @@ public class HomeFragment extends Fragment {
             }
         });
 
+    }
+
+    private void alarmInitilie() {
+
+
+        SharedPreferenceValue sv=new SharedPreferenceValue(context);
+        //Toasty.info(context,sv.getReminder()).show();
+        if(sv.getReminder().equals("-1")){
+        AlarmManager alarmManager=(AlarmManager)context. getSystemService(Context.ALARM_SERVICE);
+        Intent intent=new Intent(context, BroadCastReceiver.class);
+        intent.putExtra("msg","today");
+        PendingIntent pendingIntent=PendingIntent
+                .getBroadcast(context,tommorowsReminder,intent,0);
+        assert alarmManager != null;
+
+        Calendar c=Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY,8);
+        c.set(Calendar.MINUTE,36);
+        c.set(Calendar.SECOND,0);
+
+        if(c.before(Calendar.getInstance()))
+            c.add(Calendar.DATE,1);
+        //updateSharedPreference(DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime()));
+        // alarmManager.set(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pendingIntent);
+      //  Toasty.success(context,"Reminder set successfully").show();
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(),
+                1000 * 60 * 60 * 12, pendingIntent);
+    }
     }
 
     public void initilize()
@@ -167,7 +208,11 @@ public class HomeFragment extends Fragment {
                 if(dataSnapshot.hasChild("email"))
                     setting_email.setText(dataSnapshot.child("email").getValue().toString());
                 else
-                    Toasty.warning(getContext(),"Warning : Update Your Email ",Toasty.LENGTH_LONG,true).show();
+                    try {
+                        Toasty.warning(getContext(),"Warning : Update Your Email ",Toasty.LENGTH_LONG,true).show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 progress.setVisibility(View.GONE);
 
             }

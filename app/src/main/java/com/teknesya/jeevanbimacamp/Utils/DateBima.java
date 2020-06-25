@@ -34,11 +34,23 @@ public class DateBima {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static String getTodaysDateMonth()
     {
+        Calendar calendar=Calendar.getInstance();
+        int mm=calendar.get(Calendar.MONTH);
+        int dd=calendar.get(Calendar.DATE);
+        ++mm;
+        String formattedDateToday=(String.valueOf(dd)+"-"+String.valueOf(mm)  );
+        return formattedDateToday;
+    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static String getMaturityDate(int dur)
+    {
         Calendar cd=Calendar.getInstance();
+        cd.add(Calendar.MONTH,dur);
         int mm=cd.get(Calendar.MONTH);
         int dd=cd.get(Calendar.DATE);
         ++mm;
-        String formattedDate=(String.valueOf(dd)+"-"+String.valueOf(mm)  );
+
+        String formattedDate=(String.valueOf(dd)+"-"+String.valueOf(mm)+"-"+String.valueOf(cd.get(Calendar.YEAR))  );
         return formattedDate;
     }
 }

@@ -114,7 +114,7 @@ public class AgentCustomerSearchFragment extends Fragment implements CustomerRec
                     mWaveSwipeRefreshLayout.setRefreshing(false);
                     String name = dataSnapshot.child("detail").child("name").getValue().toString();
                     String email = dataSnapshot.child("detail").child("email").getValue().toString();
-                    String plan =  dataSnapshot.child("plan").child("plan").getValue().toString();
+                    String plan =  dataSnapshot.child("detail").child("plan").getValue().toString();
                     String image = "";
                     try {
                         image =  dataSnapshot.child("detail").child("image").getValue().toString();

@@ -178,6 +178,9 @@ public class CustHomePage extends AppCompatActivity {
         createdBy = findViewById(R.id.created_by);
         goForPresentation_bt = findViewById(R.id.apply);
         presentationCode = findViewById(R.id.presentation_code);
+        SharedPreferenceValue sv=new SharedPreferenceValue(getApplicationContext());
+        sv.updateReminder("-1");
+        //Toasty.info(getApplicationContext(),sv.getReminder()).show();
 
         main_rl.setVisibility(View.VISIBLE);
         mRoot = FirebaseDatabase.getInstance().getReference();

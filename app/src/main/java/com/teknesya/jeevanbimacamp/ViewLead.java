@@ -1,6 +1,8 @@
 package com.teknesya.jeevanbimacamp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -34,10 +36,10 @@ public class ViewLead extends AppCompatActivity {
 
 
     private FirebaseAuth mauth;
-    private DatabaseReference userreference, groupnameref, groupmessagekeyref;
+    private DatabaseReference  groupnameref;
     private ScrollView scrollView;
     private final ArrayList<ItemLead> messagelist = new ArrayList<>();
-    private LeadViewAdapter successAdapter;
+    private LeadViewAdapter leadViewAdapter;
     private RecyclerView recyclerView;
 
     @Override
@@ -50,19 +52,19 @@ public class ViewLead extends AppCompatActivity {
         ptext = progress.findViewById(R.id.progress_text);
         progress.setVisibility(View.VISIBLE);
         noLeade=findViewById(R.id.noLead);
-
-
         mauth = FirebaseAuth.getInstance();
 
-        successAdapter = new LeadViewAdapter(messagelist,getApplicationContext());
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerSuccess);
 
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_lead);
+        leadViewAdapter = new LeadViewAdapter(messagelist,getApplicationContext());
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(successAdapter);
+        recyclerView.setAdapter(leadViewAdapter);
+        recyclerView.setHasFixedSize(true);
         groupnameref = FirebaseDatabase.getInstance().getReference()
                 .child("users").child("agent").child(mauth.getUid()).child("lead");
+
 
         groupnameref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -70,7 +72,7 @@ public class ViewLead extends AppCompatActivity {
                 if(dataSnapshot.getChildrenCount()==0) {
                     progress.setVisibility(View.GONE);
                     noLeade.setVisibility(View.VISIBLE);
-                    Toasty.warning(getApplicationContext(),"No Presentation Found",Toasty.LENGTH_LONG,true).show();
+                    Toasty.warning(getApplicationContext(),"No Lead Found",Toasty.LENGTH_LONG,true).show();
 
                 }
 
@@ -87,15 +89,15 @@ public class ViewLead extends AppCompatActivity {
         groupnameref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                if (dataSnapshot.exists()) {
-
+                if (dataSnapshot.getChildrenCount()>0) {
+                    Log.d("lead","show");
                     String name=dataSnapshot.child("Name").getValue().toString();
                     String phone=dataSnapshot.child("Phone").getValue().toString();
                     String nodeID=dataSnapshot.getKey();
 
                     ItemLead il=new ItemLead(name,phone,nodeID);
                     messagelist.add(il);
-                    successAdapter.notifyDataSetChanged();
+                    leadViewAdapter.notifyDataSetChanged();
                     //recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount());
                     progress.setVisibility(View.GONE);
 
@@ -108,7 +110,7 @@ public class ViewLead extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                    successAdapter.notifyDataSetChanged();
+                leadViewAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -129,7 +131,7 @@ public class ViewLead extends AppCompatActivity {
 
 
 
-
     }
+
 
 }

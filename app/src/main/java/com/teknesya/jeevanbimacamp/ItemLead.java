@@ -20,10 +20,7 @@ public class ItemLead {
         this.value = value;
     }
 
-    public ItemLead(String key, String value) {
-        this.key = key;
-        this.value = value;
-    }
+
 
     public String getNodeId() {
         return nodeId;
@@ -37,5 +34,13 @@ public class ItemLead {
         this.key = key;
         this.value = value;
         this.nodeId = nodeID;
+    }
+    public ItemLead(String key, String value) {
+        this.key = key;
+        this.value = value;
+    }
+    public ItemLead ()
+    {
+
     }
 }

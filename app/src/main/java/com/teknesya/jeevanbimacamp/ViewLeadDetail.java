@@ -34,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.teknesya.jeevanbimacamp.Adapter.LeadViewDetailAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
@@ -51,6 +52,7 @@ public class ViewLeadDetail extends AppCompatActivity {
     private LinearLayout layoutDelete;
     Animation slideUp;
     Animation slideDown;
+    HashMap<String,Object> hashMap=new HashMap<>();
     String date="";
 
 
@@ -135,7 +137,7 @@ public class ViewLeadDetail extends AppCompatActivity {
 
                     String key = dataSnapshot.getKey();
                     String value = dataSnapshot.getValue().toString();
-
+                    hashMap.put(key,value);
                     ItemLead il = new ItemLead(key, value);
                     messagelist.add(il);
                     successAdapter.notifyDataSetChanged();
@@ -169,10 +171,6 @@ public class ViewLeadDetail extends AppCompatActivity {
             }
         });
 
-
-
-
-
         layoutSchedule.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -188,7 +186,10 @@ public class ViewLeadDetail extends AppCompatActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 date=dayOfMonth + "-" + (monthOfYear + 1) ;
-                                updateImportntDates.child(date).child("lead").child(nodeID).setValue(nodeID)
+                                updateImportntDates.child(date).child("lead")
+                                        .child(nodeID).setValue(nodeID);
+                                updateImportntDates.child(date).child("lead").child(nodeID)
+                                        .updateChildren(hashMap)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {

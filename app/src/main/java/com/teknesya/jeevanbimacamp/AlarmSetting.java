@@ -25,7 +25,7 @@ import es.dmoral.toasty.Toasty;
 public class AlarmSetting extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
     Button create;
     TextView tv;
-    static  int p=0;
+    static  int todaysReminder=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,11 +77,12 @@ public class AlarmSetting extends AppCompatActivity implements TimePickerDialog.
 
     private void updateAlarm(Calendar c) {
 
-        p++;
+
         AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent=new Intent(this, BroadCastReceiver.class);
+        intent.putExtra("msg","tomorrow");
         PendingIntent pendingIntent=PendingIntent
-                .getBroadcast(this,p,intent,0);
+                .getBroadcast(this,todaysReminder,intent,0);
         assert alarmManager != null;
         if(c.before(Calendar.getInstance()))
             c.add(Calendar.DATE,1);
