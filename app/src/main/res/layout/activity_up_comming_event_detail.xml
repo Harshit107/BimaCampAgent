@@ -22,15 +22,17 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" >
             <RelativeLayout
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content">
                 <ImageView
                     android:id="@+id/back"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/logo"
+                    android:layout_width="25dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_arrow_back_black_24dp"
                     android:layout_alignParentLeft="true"
                     android:scaleType="fitStart"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_gravity="center"/>
                 <TextView
                     android:layout_toRightOf="@id/back"
                     android:layout_width="wrap_content"
@@ -66,5 +68,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/appbar"
-        android:id="@+id/upcomingRecycler"/>
+        android:id="@+id/eventRecycler"/>
 </RelativeLayout>

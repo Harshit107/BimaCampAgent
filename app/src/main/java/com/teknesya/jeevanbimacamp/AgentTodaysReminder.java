@@ -2,6 +2,9 @@ package com.teknesya.jeevanbimacamp;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +42,14 @@ public class AgentTodaysReminder extends AppCompatActivity {
         MyPagerAddapter myPagerAddapter=new MyPagerAddapter(getSupportFragmentManager());
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(myPagerAddapter);
+
+        ImageView back=findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
 

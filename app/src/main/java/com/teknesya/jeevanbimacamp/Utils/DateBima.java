@@ -20,6 +20,19 @@ public class DateBima {
        String formattedDate = df.format(c);
        return formattedDate;
    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static String getDateInStringNumFormate()
+    {
+        Calendar cd=Calendar.getInstance();
+        cd.add(Calendar.DATE,-1);
+        int mm=cd.get(Calendar.MONTH);
+        int dd=cd.get(Calendar.DATE);
+        int yy=cd.get(Calendar.YEAR);
+        ++mm;
+        String formattedDate=(String.valueOf(dd)+"-"+String.valueOf(mm)+"-"+String.valueOf(yy)  );
+        return formattedDate;
+    }
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static String getTommorowDateMonth()
     {
@@ -53,4 +66,37 @@ public class DateBima {
         String formattedDate=(String.valueOf(dd)+"-"+String.valueOf(mm)+"-"+String.valueOf(cd.get(Calendar.YEAR))  );
         return formattedDate;
     }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static int getYear()
+    {
+        Calendar now = Calendar.getInstance();
+       return now.get(Calendar.YEAR);
+        //String yearInString = String.valueOf(year);
+    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static int getMonth()
+    {
+        Calendar now = Calendar.getInstance();
+        return  now.get(Calendar.MONTH)+1;
+        //String yearInString = String.valueOf(year);
+    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static int getDay()
+    {
+        Calendar now = Calendar.getInstance();
+       return now.get(Calendar.DATE);
+        //String yearInString = String.valueOf(year);
+    }
+
+    public static int convertDateMonthToMonth(String dateMonth)
+    {
+        String[] m=dateMonth.split("-");
+        return Integer.parseInt(m[1]);
+
+    }
+
+
+
 }

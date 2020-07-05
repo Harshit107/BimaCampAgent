@@ -57,6 +57,8 @@ dependencies {
     implementation 'com.github.tntkhang:gmail-sender-library:1.2.0'
     implementation 'com.github.DanielMartinus:Stepper-Touch:1.0.1'
     implementation 'com.github.iammert:MaterialIntroView:1.6.0'
+    //
+    implementation 'com.github.chivorns.androidx:smartmaterialspinner:1.2.1'
 
     //pdf
     implementation 'com.itextpdf:itextpdf:5.0.6'

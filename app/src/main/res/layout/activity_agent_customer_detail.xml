@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/bg_serv"
     android:layout_height="match_parent"
     tools:context=".AgentCustomerDetail">
 
@@ -22,12 +23,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/logo"
-                    android:scaleType="fitStart"
-                    android:layout_gravity="center_vertical"/>
+                    android:id="@+id/back"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_arrow_back_black_24dp"
+                    android:layout_gravity="center_vertical"
+                    />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
@@ -48,11 +52,93 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/appbar">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_pic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:padding="5dp"
+                app:civ_border_color="@color/white"
+                android:src="@drawable/avtar"
+                app:civ_border_width="1dp" />
+
+            <ImageView
+                android:id="@+id/edit"
+                android:enabled="false"
+                android:background="@color/transparent"
+                android:clickable="false"
+                android:layout_marginTop="90dp"
+                android:layout_marginLeft="-10dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:padding="5dp"
+                android:tint="@color/white"
+                android:src="@drawable/ic_mode_edit_black_24dp"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:paddingLeft="20dp"
+                    android:text="Name"/>
+                <TextView
+                    android:id="@+id/name"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:paddingLeft="20dp"
+                    android:text="Harshit Keshari"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="20dp"
+                    android:text="Email"/>
+                <TextView
+                    android:id="@+id/email"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:layout_marginTop="2dp"
+                    android:text="Harshit@gmail.com"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,88 +146,29 @@
             android:text="Personal Detail"
             android:textSize="20dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-
+            android:textAlignment="center"
+            android:drawableLeft="@drawable/icon_person"
+            android:drawableTint="@color/colorPrimaryDarkk"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="25dp"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDarkk"
             android:textStyle="bold"
             />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:orientation="horizontal"
-            >
 
-            <TextView
-                android:textSize="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                />
-            <TextView
-                android:id="@+id/name"
-                android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Name"
-
-                android:textSize="15dp"
-
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="55dp"
-                android:textColor="@color/black"
-                android:textStyle="normal"
-           />
-
-
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email"
-                android:textSize="15dp"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                />
-            <TextView
-                android:id="@+id/email"
-                android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                android:textSize="15dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="60dp"
-                android:textColor="@color/black"
-                android:textStyle="normal"
-            />
-
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:weightSum="10"
             android:orientation="horizontal"
             >
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="Phone"
                 android:textSize="15dp"
@@ -152,12 +179,12 @@
             <TextView
                 android:id="@+id/phone"
                 android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="7"
                 android:layout_height="wrap_content"
                 android:hint="Phone"
                 android:textSize="15dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="55dp"
                 android:textColor="@color/black"
                 android:textStyle="normal"
                 />
@@ -170,11 +197,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:weightSum="10"
             android:orientation="horizontal"
             >
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="Gender"
                 android:textSize="15dp"
@@ -184,12 +213,12 @@
             <TextView
                 android:id="@+id/gender"
                 android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="7"
                 android:layout_height="wrap_content"
                 android:hint="Male"
                 android:textSize="15dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="50dp"
                 android:textColor="@color/black"
                 android:textStyle="normal"/>
 
@@ -201,11 +230,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:weightSum="10"
             android:orientation="horizontal"
             >
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="Birthday"
                 android:textSize="15dp"
@@ -215,12 +246,12 @@
             <TextView
                 android:id="@+id/dob"
                 android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="7"
                 android:layout_height="wrap_content"
                 android:hint="Dob"
                 android:textSize="15dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="45dp"
                 android:textColor="@color/black"
                 android:textStyle="normal"/>
 
@@ -231,11 +262,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:weightSum="10"
             android:orientation="horizontal"
             >
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="M. Status"
                 android:textSize="15dp"
@@ -245,12 +278,12 @@
             <TextView
                 android:id="@+id/status"
                 android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="7"
                 android:layout_height="wrap_content"
                 android:hint="m.status"
                 android:textSize="15dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="40dp"
                 android:textColor="@color/black"
                 android:textStyle="normal"/>
 
@@ -263,11 +296,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:weightSum="10"
             android:orientation="horizontal"
             >
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"                android:layout_height="wrap_content"
                 android:text="Anniversary"
                 android:textSize="15dp"
                 android:layout_marginLeft="10dp"
@@ -276,29 +310,29 @@
             <TextView
                 android:id="@+id/anni"
                 android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Anniversary"
                 android:textSize="15dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="25dp"
-                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_weight="7"                android:textColor="@color/black"
                 android:textStyle="normal"/>
 
 
 
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:weightSum="10"
             android:orientation="horizontal"
             >
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Family"
+                android:layout_weight="3"
                 android:textSize="15dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
@@ -306,18 +340,141 @@
             <TextView
                 android:id="@+id/totalfamily"
                 android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="Family"
                 android:textSize="15dp"
+                android:layout_weight="7"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="60dp"
                 android:textColor="@color/black"
                 android:textStyle="normal"/>
 
         </LinearLayout>
 
-<!--   *********     End of Personal Detail    ************   -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:weightSum="10"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="State"
+                android:textSize="15dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="0dp"/>
+            <TextView
+                android:id="@+id/state"
+                android:layout_marginRight="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="state"
+                android:layout_weight="7"
+                android:textSize="15dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:textStyle="normal"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:weightSum="10"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="Area"
+                android:textSize="15dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="0dp"/>
+            <TextView
+                android:id="@+id/area"
+                android:layout_marginRight="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Area"
+                android:layout_weight="7"
+                android:textSize="15dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:textStyle="normal"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:weightSum="10"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="Landmark"
+                android:textSize="15dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="0dp"/>
+            <TextView
+                android:id="@+id/landmark"
+                android:layout_marginRight="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="LandMark"
+                android:textSize="15dp"
+                android:layout_weight="7"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:textStyle="normal"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:weightSum="10"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="Pincode"
+                android:textSize="15dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="0dp"/>
+            <TextView
+                android:id="@+id/pincode"
+                android:layout_marginRight="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Pincode"
+                android:layout_weight="7"
+                android:textSize="15dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:textStyle="normal"/>
+
+        </LinearLayout>
+
+
+
+        <!--   *********     End of Personal Detail    ************   -->
 
 
 
@@ -334,12 +491,16 @@
                 android:layout_height="wrap_content"
                 android:text="Plan Detail"
                 android:textSize="20dp"
+                android:drawableLeft="@drawable/ic_privacy_in_not_black_24dp"
+                android:drawablePadding="15dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
+                android:drawableTint="@color/colorPrimaryDarkk"
                 android:layout_marginLeft="10dp"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryDarkk"
                 android:textStyle="bold"
                 />
+
         <TextView
             android:id="@+id/totalplan"
             android:layout_width="wrap_content"
@@ -396,18 +557,39 @@
 <!--        </RelativeLayout>-->
 
 
-        <Button
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:weightSum="10">
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="4.3"
+                android:layout_height="wrap_content"
+                android:text="Upload Image"
+                android:id="@+id/updateImage"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight=".5"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4.3"
+                android:text="Add New Plan"
+                android:id="@+id/add"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"/>
 
-            android:text="Add New Plan"
-            android:layout_marginBottom="20dp"
-            android:id="@+id/add"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/white"/>
+        </LinearLayout>
 
     </LinearLayout>
 

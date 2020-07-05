@@ -91,7 +91,7 @@ public class CreateNewLead extends AppCompatActivity {
                 {
                     Toasty.error(getApplicationContext(),"Please Enter phone Of Lead").show();
                     new AlertDialog.Builder(CreateNewLead.this)
-                            .setMessage("Lead Name is Must.\nUse Title as Phone to save Phone Number of Lead")
+                            .setMessage("Lead Phone Number is Must.\nUse Title as Phone to save Phone Number of Lead")
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -123,8 +123,9 @@ public class CreateNewLead extends AppCompatActivity {
                                             date=dayOfMonth + "-" + (monthOfYear + 1) ;
                                             updateImportntDates.child(date).child("lead")
                                                     .child(messageKeyID).updateChildren(hashMap);
-
                                             updateLead.child(messageKeyID).updateChildren(hashMap);
+                                            Toasty.success(getApplicationContext(),"Success").show();
+                                            finish();
                                         }
                                     }, year, month, day);
                             picker.show();
@@ -136,6 +137,8 @@ public class CreateNewLead extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             updateLead.child(messageKeyID).updateChildren(hashMap);
+                            Toasty.success(getApplicationContext(),"Success").show();
+                            finish();
                         }
                     });
                     ask.create().show();

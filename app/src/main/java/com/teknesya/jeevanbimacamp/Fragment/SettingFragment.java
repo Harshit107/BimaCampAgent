@@ -3,6 +3,7 @@ package com.teknesya.jeevanbimacamp.Fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,12 +60,28 @@ public class SettingFragment extends Fragment {
         LinearLayout notification = view.findViewById(R.id.notification);
         LinearLayout security = view.findViewById(R.id.security);
         LinearLayout contactUs = view.findViewById(R.id.contactus);
+        LinearLayout about = view.findViewById(R.id.aboutus);
+
+        LinearLayout privacy = view.findViewById(R.id.privacy);
         Button logout = view.findViewById(R.id.move);
 
         contactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 composeEmail();
+            }
+        });
+
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openWebPage("https://www.teknesya.com");
+            }
+        });
+        privacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openWebPage("https://www.teknesya.com");
             }
         });
 
@@ -215,7 +232,16 @@ public class SettingFragment extends Fragment {
                     }
                 })
                 .create().show();
-    }}
+    }
+    public void openWebPage(String url) {
+        Uri webpage = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
+}
 
 
 

@@ -68,6 +68,7 @@ public class FreshCall extends Fragment {
 
         todaysFreshAdapter = new FreshCallAdapter(messagelist, getApplicationContext(), getActivity());
         recyclerView = (RecyclerView) view.findViewById(R.id.freshRecycler);
+
         freshCallLinear = view.findViewById(R.id.freshcallLinear);
         freshCallLinear.setVisibility(View.INVISIBLE);
 
@@ -79,6 +80,7 @@ public class FreshCall extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(todaysFreshAdapter);
+
         groupnameref = FirebaseDatabase.getInstance().getReference()
                 .child("users").child("agent").child(mauth.getUid()).child("date");
 

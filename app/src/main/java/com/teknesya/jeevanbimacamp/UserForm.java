@@ -8,6 +8,7 @@ import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -107,7 +108,7 @@ public class UserForm extends AppCompatActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 dB=dayOfMonth + "-" + (monthOfYear + 1) ;
-                                dob.setText("DOB " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                dob.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
                 picker.show();
@@ -128,7 +129,7 @@ public class UserForm extends AppCompatActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 dM=dayOfMonth + "-" + (monthOfYear + 1);
-                                anniversary.setText("Anniversary " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                anniversary.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
                 picker.show();
@@ -292,6 +293,14 @@ public class UserForm extends AppCompatActivity {
                     Toasty.error(getApplicationContext(), "Enter Your Birthday", Toasty.LENGTH_LONG, true).show();
                 } else if (mariatl_status.getText().toString().isEmpty()) {
                     Toasty.error(getApplicationContext(), "Select Marital Status First", Toasty.LENGTH_LONG, true).show();
+                }else if (state.getText().toString().isEmpty()) {
+                    Toasty.error(getApplicationContext(), "Select State First", Toasty.LENGTH_LONG, true).show();
+                }else if (area.getText().toString().isEmpty()) {
+                    Toasty.error(getApplicationContext(), "Select Area First", Toasty.LENGTH_LONG, true).show();
+                }else if (pincode.getText().toString().isEmpty()) {
+                    Toasty.error(getApplicationContext(), "Select Pincode First", Toasty.LENGTH_LONG, true).show();
+                }else if (landmark.getText().toString().isEmpty()) {
+                    Toasty.error(getApplicationContext(), "LandMark Not Selected !", Toasty.LENGTH_LONG, true).show();
                 } else {
                     String cName = "";
                     cName = name.getText().toString();
@@ -334,6 +343,7 @@ public class UserForm extends AppCompatActivity {
                     it.putExtra("gender",cGender);
                     it.putExtra("dob",cDob);
                     it.putExtra("anni",cAnni);
+                    Log.d("anni",cAnni);
                     startActivity(it);
 
                 }

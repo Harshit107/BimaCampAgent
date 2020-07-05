@@ -1,16 +1,20 @@
 package com.teknesya.jeevanbimacamp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
@@ -20,22 +24,25 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Section;
-import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 
-public class Pdf1Activity extends AppCompatActivity {
+public class PdfCreate extends AppCompatActivity {
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
     private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
     private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
@@ -64,7 +71,7 @@ public class Pdf1Activity extends AppCompatActivity {
      *
      * @param activity
      */
-    public static void verifyStoragePermissions(Activity activity) {
+    public void verifyStoragePermissions(Activity activity) {
         // Check if we have write permission
         if (ContextCompat.checkSelfPermission(activity,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -95,51 +102,31 @@ public class Pdf1Activity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_EXTERNAL_STORAGE: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == REQUEST_EXTERNAL_STORAGE) {// If request is cancelled, the result arrays are empty.
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-                    createPDF();
+                // permission was granted, yay! Do the
+                // contacts-related task you need to do.
+                createPDF();
 
-                } else {
+            } else {
 
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
+                // permission denied, boo! Disable the
+                // functionality that depends on this permission.
 
-                    Toast.makeText(Pdf1Activity.this, "Error ", Toast.LENGTH_SHORT).show();
-                }
-                return;
+                Toast.makeText(PdfCreate.this, "Error ", Toast.LENGTH_SHORT).show();
             }
+            return;
 
             // other 'case' lines to check for other
             // permissions this app might request
         }
     }
 
-    public static void createPDF(){
+    public void createPDF(){
         //create document object
         Document document=new Document();
-
-        //output file path
-
-//        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "/Harshit2.pdf");
-//        try {
-//            PdfWriter.getInstance(document,new FileOutputStream(file));
-//            document.open();
-//            addMetaData(document);
-//            addTitlePage(document);
-//            addContent(document);
-////            document.close();
-//
-////            document.writeTo(new FileOutputStream(file));
-////            Toast.makeText(context, "Success", Toast.LENGTH_LONG).show();
-//        } catch (Exception e) {
-////            Toast.makeText(context, "Error found :" + e, Toast.LENGTH_SHORT).show();
-//        }
 
         File outpath= new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "/Harshit2.pdf");
 
@@ -147,7 +134,7 @@ public class Pdf1Activity extends AppCompatActivity {
         try {
             PdfWriter.getInstance(document, new FileOutputStream(outpath));
             document.open();
-            addMetaData(document);
+            //addMetaData(document);
             addTitlePage(document);
             addContent(document);
             document.close();
@@ -168,16 +155,39 @@ public class Pdf1Activity extends AppCompatActivity {
     // Reader
     // under File -> Properties
     private static void addMetaData(Document document) {
+
+
         document.addTitle("My first PDF");
+
         document.addSubject("Using iText");
+
         document.addKeywords("Java, PDF, iText");
+
         document.addAuthor("Lars Vogel");
+
         document.addCreator("Lars Vogel");
+
     }
 
 
-    private static void addTitlePage(Document document)
+    private void addTitlePage(Document document)
             throws DocumentException {
+
+        // load image
+        try {
+            document.open();
+            Drawable d = getResources().getDrawable(R.drawable.covid);
+            BitmapDrawable bitDw = ((BitmapDrawable) d);
+            Bitmap bmp = bitDw.getBitmap();
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            Image image = Image.getInstance(stream.toByteArray());
+            document.add(image);
+            document.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Paragraph preface = new Paragraph();
         // We add one empty line
         addEmptyLine(preface, 1);

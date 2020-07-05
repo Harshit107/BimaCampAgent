@@ -10,6 +10,8 @@
     app:cardElevation="5dp"
     app:cardCornerRadius="10dp">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +19,9 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_marginBottom="1dp"
-        android:padding="10dp">
+        android:padding="5dp">
+
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image"
             android:layout_width="80dp"
@@ -30,16 +34,29 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:orientation="vertical">
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start"
+                android:text="20/05/2020"
+                android:maxWidth="250dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorPrimary"
+                android:maxLines="1"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="start"
-                android:maxWidth="250dp"
-
                 android:hint="Customer Name"
                 android:layout_marginTop="5dp"
+                android:maxWidth="250dp"
+
                 android:textColor="#000"
                 android:maxLines="1"
                 android:textSize="12sp"
@@ -50,10 +67,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="start"
-                android:maxWidth="250dp"
-
                 android:hint="Customer Email"
                 android:layout_marginTop="7dp"
+                android:maxWidth="250dp"
+
                 android:textColor="#000"
                 android:maxLines="1"
                 android:textSize="12sp" />
@@ -64,7 +81,7 @@
                 android:layout_height="match_parent"
                 android:gravity="start"
                 android:maxWidth="250dp"
-
+                android:visibility="gone"
                 android:layout_marginTop="7dp"
                 android:hint="Plan"
                 android:maxLines="2"
@@ -72,9 +89,21 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="10sp" />
         </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_call_black_24dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"/>
+        </RelativeLayout>
+
 
     </LinearLayout>
-
 
 </androidx.cardview.widget.CardView>
 

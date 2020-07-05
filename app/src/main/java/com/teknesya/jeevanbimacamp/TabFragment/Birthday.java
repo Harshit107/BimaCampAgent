@@ -2,6 +2,7 @@ package com.teknesya.jeevanbimacamp.TabFragment;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,13 +36,14 @@ import es.dmoral.toasty.Toasty;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
-public class BirthDay extends Fragment {
+public class BirthDay extends Fragment implements CustomerRecyclerAdapter.OnLoadMoreListener {
     View progress;
     TextView ptext;
 
     TextView noFresh;
 
     String todaysDate;
+
 
     private FirebaseAuth mauth;
     private DatabaseReference userReference, groupnameref;
@@ -95,89 +97,52 @@ public class BirthDay extends Fragment {
 //                .child("users").child("agent").child(mauth.getUid()).child("date");
 
 
-        groupnameref.keepSynced(true);
-        groupnameref.child("date").addChildEventListener(new ChildEventListener() {
+//
+        groupnameref.child("date").child(DateBima.getTodaysDateMonth()).child("birthday").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String currentDate=dataSnapshot.getKey();
-                groupnameref.child("date").child(currentDate).child("birthday").addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if(dataSnapshot.exists()) {
 
-                        if(dataSnapshot.exists()) {
+                    final String nodeId = dataSnapshot.getKey();
 
-                            final String nodeId = dataSnapshot.getKey();
-
-                            groupnameref.child("customer").child(nodeId).addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    groupnameref.child("customer").child(nodeId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
 //                                    String name = dataSnapshot.child("Name").getValue().toString();
 //                                    String phone = dataSnapshot.child("Phone").getValue().toString();
 
-                                    String name =  dataSnapshot.child("detail").child("name").getValue().toString();
-                                    String email =  dataSnapshot.child("detail").child("email").getValue().toString();
-                                    String plan =  dataSnapshot.child("detail").child("gender").getValue().toString();
-                                    String image = "";
-                                    try {
-                                        image =  dataSnapshot.child("detail").child("image").getValue().toString();
-                                    } catch (Exception e) {
-                                        image = "Default";
-                                    }
+                            String name =  dataSnapshot.child("detail").child("name").getValue().toString();
+                            String email =  dataSnapshot.child("detail").child("email").getValue().toString();
+                            String plan =  dataSnapshot.child("detail").child("gender").getValue().toString();
+                            String image = "";
+                            try {
+                                image =  dataSnapshot.child("detail").child("image").getValue().toString();
+                            } catch (Exception e) {
+                                image = "Default";
+                            }
 
-                                    String nodeId = dataSnapshot.getKey();
-                                    CustomerlListings javamesssage = new CustomerlListings(name, image, plan, email, nodeId);
-                                    listItems.add(javamesssage);
-                                    todaysFreshAdapter.notifyDataSetChanged();
+                            String nodeId = dataSnapshot.getKey();
+                            CustomerlListings javamesssage = new CustomerlListings(name, image, plan, email, nodeId);
+                            listItems.add(javamesssage);
+                            todaysFreshAdapter.notifyDataSetChanged();
 
+                            progress.setVisibility(View.GONE);
+                        }
 
-
-
-//                                    ItemLead data = new ItemLead(name, phone, nodeId);
-//                                    messagelist.add(data);
-//                                    todaysFreshAdapter.notifyDataSetChanged();
-//                                    recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount());
-                                    progress.setVisibility(View.GONE);
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
                         }
-                    }
+                    });
 
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-
+                }
 
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
 
             }
 
@@ -198,7 +163,6 @@ public class BirthDay extends Fragment {
         });
 
 
-
     }
 
 
@@ -215,5 +179,10 @@ public class BirthDay extends Fragment {
         noFresh.setVisibility(View.VISIBLE);
         Toasty.info(getApplicationContext(),"No BirthDay Found Today",Toasty.LENGTH_LONG,true).show();
 
+    }
+
+    @Override
+    public void onLoadMore() {
+        Log.d("loadmore","end");
     }
 }

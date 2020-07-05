@@ -7,6 +7,35 @@ public class CustomerlListings {
     String plan;
     String email;
     String nodeId;
+    String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String phone) {
+        Phone = phone;
+    }
+
+    public CustomerlListings(String name, String image, String plan, String email, String nodeId, String date, String phone) {
+        this.name = name;
+        Image = image;
+        this.plan = plan;
+        this.email = email;
+        this.nodeId = nodeId;
+        this.date = date;
+        Phone = phone;
+    }
+
+    String Phone;
 
     public CustomerlListings() {
 

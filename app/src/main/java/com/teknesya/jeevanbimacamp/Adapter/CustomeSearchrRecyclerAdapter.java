@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.squareup.picasso.Picasso;
 import com.teknesya.jeevanbimacamp.AgentCustomerDetail;
 import com.teknesya.jeevanbimacamp.Fragment.AgentCustomerSearchFragment;
@@ -25,35 +24,17 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class CustomerRecyclerAdapter extends RecyclerView.Adapter<CustomerRecyclerAdapter.ViewHolder> {
+public class CustomeSearchrRecyclerAdapter extends RecyclerView.Adapter<CustomeSearchrRecyclerAdapter.ViewHolder> {
 
 
     private List<CustomerlListings> listItems;
     private Context context;
-    OnLoadMoreListener onLoadMoreListener;
 
-    public CustomerRecyclerAdapter(List<CustomerlListings> listItems, Context context, AgentCustomerSearchFragment onLoadMoreListener) {
+    public CustomeSearchrRecyclerAdapter(List<CustomerlListings> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
-        this.onLoadMoreListener = onLoadMoreListener;
     }
 
-    public CustomerRecyclerAdapter(ArrayList<CustomerlListings> listItems, Context applicationContext,BirthDay onLoadMoreListener) {
-        this.listItems = listItems;
-        this.context = applicationContext;
-    }
-    public CustomerRecyclerAdapter(ArrayList<CustomerlListings> listItems, Context applicationContext, UpComingEventDetail onLoadMoreListener) {
-        this.listItems = listItems;
-        this.context = applicationContext;
-    }
-    public CustomerRecyclerAdapter(ArrayList<CustomerlListings> listItems, Context applicationContext, Anniversary onLoadMoreListener) {
-        this.listItems = listItems;
-        this.context = applicationContext;
-    }
-
-    public interface OnLoadMoreListener{
-        void onLoadMore();
-    }
     public List<CustomerlListings> getListItems() {
         return listItems;
     }
@@ -80,14 +61,6 @@ public class CustomerRecyclerAdapter extends RecyclerView.Adapter<CustomerRecycl
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         CustomerlListings listItem = listItems.get(position);
-        try {
-            if (position==getItemCount()-1 ){
-                onLoadMoreListener.onLoadMore();
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         try {
             Picasso.get().load(listItem.getImage())

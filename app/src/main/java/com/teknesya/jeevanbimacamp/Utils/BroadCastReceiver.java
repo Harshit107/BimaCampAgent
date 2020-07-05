@@ -61,11 +61,30 @@ public class BroadCastReceiver extends BroadcastReceiver {
                         recivedDate = dataSnapshot.getKey().toString();
 
                         if (recivedDate.startsWith(DateBima.getTodaysDateMonth())) {
-                            Vibrator vibrator = (Vibrator) context
-                                    .getSystemService(Context.VIBRATOR_SERVICE);
-                            vibrator.vibrate(2000);
-                            NotificationReminder n = new NotificationReminder
-                                    (context, "Reminder", "You have Reminder For Today\nClick here To View");
+
+                            if(dataSnapshot.hasChild("lead"))
+                            {
+                                Vibrator vibrator = (Vibrator) context
+                                        .getSystemService(Context.VIBRATOR_SERVICE);
+                                vibrator.vibrate(2000);
+                                NotificationReminder n = new NotificationReminder
+                                        (context, "Reminder", "You have Fresh Call Today\nClick here To Check");
+                            }
+                            if(dataSnapshot.hasChild("marriage")){
+                                Vibrator vibrator = (Vibrator) context
+                                        .getSystemService(Context.VIBRATOR_SERVICE);
+                                vibrator.vibrate(2000);
+                                NotificationReminder n = new NotificationReminder
+                                        (context, "Reminder", "You have Anniversary Reminder Today\nClick here To Check");
+                            }
+                            if(dataSnapshot.hasChild("birthday")){
+                                Vibrator vibrator = (Vibrator) context
+                                        .getSystemService(Context.VIBRATOR_SERVICE);
+                                vibrator.vibrate(2000);
+                                NotificationReminder n = new NotificationReminder
+                                        (context, "Reminder", "You have new birthday Reminder Today\nClick here To Check");
+                            }
+
                         }
                     }
                     @Override
@@ -74,11 +93,29 @@ public class BroadCastReceiver extends BroadcastReceiver {
                         recivedDate = dataSnapshot.getKey().toString();
 
                         if (recivedDate.startsWith(DateBima.getTodaysDateMonth())) {
-                            Vibrator vibrator = (Vibrator) context
-                                    .getSystemService(Context.VIBRATOR_SERVICE);
-                            vibrator.vibrate(2000);
-                            NotificationReminder n = new NotificationReminder
-                                    (context, "Reminder", "You have Reminder For Today\nClick here To View");
+
+                            if(dataSnapshot.hasChild("lead"))
+                            {
+                                Vibrator vibrator = (Vibrator) context
+                                        .getSystemService(Context.VIBRATOR_SERVICE);
+                                vibrator.vibrate(2000);
+                                NotificationReminder n = new NotificationReminder
+                                        (context, "Reminder", "You have Fresh Call Today\nClick here To Check");
+                            }
+                            if(dataSnapshot.hasChild("marriage")){
+                                Vibrator vibrator = (Vibrator) context
+                                        .getSystemService(Context.VIBRATOR_SERVICE);
+                                vibrator.vibrate(2000);
+                                NotificationReminder n = new NotificationReminder
+                                        (context, "Reminder", "You have Anniversary Reminder Today\nClick here To Check");
+                            }
+                            if(dataSnapshot.hasChild("birthday")){
+                                Vibrator vibrator = (Vibrator) context
+                                        .getSystemService(Context.VIBRATOR_SERVICE);
+                                vibrator.vibrate(2000);
+                                NotificationReminder n = new NotificationReminder
+                                        (context, "Reminder", "You have new birthday Reminder Today\nClick here To Check");
+                            }
 
                         }
                     }
@@ -109,11 +146,28 @@ public class BroadCastReceiver extends BroadcastReceiver {
                         recivedDate = dataSnapshot.getKey().toString();
 
                         if (recivedDate.startsWith(DateBima.getTommorowDateMonth())) {
-                            Vibrator vibrator = (Vibrator) context
-                                    .getSystemService(Context.VIBRATOR_SERVICE);
-                            vibrator.vibrate(2000);
-                            NotificationReminder n = new NotificationReminder
-                                    (context, "Reminder", "You have New Reminder For Tomorrow\nClick here To View");
+
+                            if (dataSnapshot.hasChild("lead")) {
+                                Vibrator vibrator = (Vibrator) context
+                                        .getSystemService(Context.VIBRATOR_SERVICE);
+                                vibrator.vibrate(2000);
+                                NotificationReminder n = new NotificationReminder
+                                        (context, "Reminder", "You have Fresh Call Tomorrow\nClick here To Check");
+                            }
+                            if (dataSnapshot.hasChild("marriage")) {
+                                Vibrator vibrator = (Vibrator) context
+                                        .getSystemService(Context.VIBRATOR_SERVICE);
+                                vibrator.vibrate(2000);
+                                NotificationReminder n = new NotificationReminder
+                                        (context, "Reminder", "You have Anniversary Reminder Tomorrow\nClick here To Check");
+                            }
+                            if (dataSnapshot.hasChild("birthday")) {
+                                Vibrator vibrator = (Vibrator) context
+                                        .getSystemService(Context.VIBRATOR_SERVICE);
+                                vibrator.vibrate(2000);
+                                NotificationReminder n = new NotificationReminder
+                                        (context, "Reminder", "You have birthday Reminder Tomorrow\nClick here To Check");
+                            }
                         }
                     }
                     @Override
@@ -126,7 +180,7 @@ public class BroadCastReceiver extends BroadcastReceiver {
                                     .getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(2000);
                             NotificationReminder n = new NotificationReminder
-                                    (context, "Reminder", "You have New Reminder For Tomorrow\nClick here To View");
+                                    (context, "Reminder", "New Reminder For Tomorrow\nClick here To View");
 
                         }
                     }

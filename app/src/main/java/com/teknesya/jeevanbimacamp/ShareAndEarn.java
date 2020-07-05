@@ -55,6 +55,14 @@ public class ShareAndEarn extends AppCompatActivity {
             }
         });
 
+        ImageView back=findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         dRef=mRoot.child("users").child("customer").child("registered").child("detail")
                 .child(mAuth.getUid());
         dRef.addListenerForSingleValueEvent(new ValueEventListener() {

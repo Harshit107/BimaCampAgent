@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -30,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.teknesya.jeevanbimacamp.Utils.DateBima;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
@@ -38,20 +41,20 @@ public class UserForm2 extends AppCompatActivity {
     DatePickerDialog picker;
 
     FirebaseAuth mAuth;
-    DatabaseReference root,getPlan,userData;
-    String value,selectedcourse="default",name;
-    private ArrayList<String> list_of_array=new ArrayList<>();
-    int count=0,studentexist=0;
+    DatabaseReference root, getPlan, userData;
+    String value, selectedPlan = "Select", name;
+    private ArrayList<String> list_of_array = new ArrayList<>();
+    int count = 0, studentexist = 0;
     Button upload;
     ProgressDialog pbar;
-    TextView selectPlan,sumAssured,premium;
+    TextView selectPlan, sumAssured, premium;
     EditText maturity;
-  //  int counter =0;
-    ImageView premiumDrop,planDrop;
-    String dateBirth="",dateMarriage="default";
+    //  int counter =0;
+    ImageView premiumDrop, planDrop;
+    String dateBirth = "", dateMarriage = "default";
     DatabaseReference updateImportntDates;
-    String messageKey="",planKeyID="";
-    int premiumInYear =1;
+    String messageKey = "", planKeyID = "";
+    int premiumInYear = 1;
 
 
     @Override
@@ -59,10 +62,12 @@ public class UserForm2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_form2);
         init();
-        mAuth =FirebaseAuth.getInstance();
-        root= FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        root = FirebaseDatabase.getInstance().getReference();
 
-        final Intent get=getIntent();
+        final Intent get = getIntent();
+
+
         String cName = "";
         cName = get.getStringExtra("name");
         String cEmail = "";
@@ -76,7 +81,10 @@ public class UserForm2 extends AppCompatActivity {
         String cPhone = "";
         cPhone = get.getStringExtra("phone");
         String cAnni = "";
-        cAnni = get.getStringExtra("ann");
+        cAnni = get.getStringExtra("anni");
+
+        Log.d("anni", cAnni);
+
         String cTotalFamily = "";
         cTotalFamily = get.getStringExtra("totalFamily");
         String cState = "";
@@ -84,22 +92,22 @@ public class UserForm2 extends AppCompatActivity {
         String cArea = "";
         cArea = get.getStringExtra("area");
         String cPincode = "";
-        cPincode =get.getStringExtra("pincode");
+        cPincode = get.getStringExtra("pincode");
         String cLandMark = "";
         cLandMark = get.getStringExtra("landMark");
 
         dateBirth = get.getStringExtra("dB");
         dateMarriage = get.getStringExtra("dM");
 
-        upload=findViewById(R.id.update);
-        pbar=new ProgressDialog(this);
+        upload = findViewById(R.id.update);
+        pbar = new ProgressDialog(this);
         pbar.setMessage("please wait");
         pbar.setCancelable(false);
         pbar.setCanceledOnTouchOutside(false);
         pbar.show();
 
-        updateImportntDates=root.child("users").child("agent")
-                .child(mAuth.getUid()).child("date");
+        updateImportntDates = root.child("users").child("agent")
+                .child(mAuth.getUid());
 
         ImageView back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -108,11 +116,7 @@ public class UserForm2 extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
-
-        getPlan=root.child("plan");
+        getPlan = root.child("plan");
 
 
         getPlandb();
@@ -122,44 +126,44 @@ public class UserForm2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                        final AlertDialog.Builder builder = new AlertDialog.Builder(UserForm2.this);
-                        builder.setTitle("Premium");
-                        final String[] s;
-                        //Toast.makeText(getApplicationContext(),Month+" "+date,Toast.LENGTH_LONG).show();
+                final AlertDialog.Builder builder = new AlertDialog.Builder(UserForm2.this);
+                builder.setTitle("Premium");
+                final String[] s;
+                //Toast.makeText(getApplicationContext(),Month+" "+date,Toast.LENGTH_LONG).show();
 
-                        s = new String[]{
+                s = new String[]{
 
-                                "Yearly",
-                                "Half-yearly",
-                                "quarterly",
-                                "Monthly"
+                        "Yearly",
+                        "Half-yearly",
+                        "quarterly",
+                        "Monthly"
 
-                        };
-                        final String[] selectedItem = new String[1];
-                        int checkedItem = 0;
-                        selectedItem[0] = s[0];
-
-
-                        builder.setSingleChoiceItems(s, checkedItem, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                selectedItem[0] = s[which];
+                };
+                final String[] selectedItem = new String[1];
+                int checkedItem = 0;
+                selectedItem[0] = s[0];
 
 
-                                //Toast.makeText(getApplicationContext(),selectedcourse,Toast.LENGTH_LONG).show();
-                            }
-                        });
-                        builder.setPositiveButton("SET", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                builder.setSingleChoiceItems(s, checkedItem, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        selectedItem[0] = s[which];
 
-                                premium.setText(selectedItem[0]);
 
-                            }
-                        });
-
-                        builder.create().show();
+                        //Toast.makeText(getApplicationContext(),selectedcourse,Toast.LENGTH_LONG).show();
                     }
+                });
+                builder.setPositiveButton("SET", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        premium.setText(selectedItem[0]);
+
+                    }
+                });
+
+                builder.create().show();
+            }
 
         });
 
@@ -171,14 +175,14 @@ public class UserForm2 extends AppCompatActivity {
                 builder.setTitle("Choose a Plan");
 
 // add a radio button list
-                final String[] c =new String[list_of_array.size()];
+                final String[] c = new String[list_of_array.size()];
                 list_of_array.toArray(c);
                 int checkedItem = 0; // cow
                 builder.setSingleChoiceItems(c, checkedItem, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        selectedcourse=c[which];
-                        Toasty.info(getApplicationContext(),selectedcourse,Toasty.LENGTH_LONG).show();
+                        selectedPlan = c[which];
+                        Toasty.info(getApplicationContext(), selectedPlan, Toasty.LENGTH_LONG).show();
                     }
                 });
 
@@ -186,7 +190,7 @@ public class UserForm2 extends AppCompatActivity {
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int p) {
-                        selectPlan.setText(selectedcourse);
+                        selectPlan.setText(selectedPlan);
                         // user clicked OK
 
                     }
@@ -204,9 +208,12 @@ public class UserForm2 extends AppCompatActivity {
                 dialog.show();
 
 
-
             }
         });
+
+
+        //conversion
+
         final String finalCName = cName;
         final String finalCEmail = cEmail;
         final String finalCPhone = cPhone;
@@ -219,55 +226,71 @@ public class UserForm2 extends AppCompatActivity {
         final String finalCArea = cArea;
         final String finalCLandMark = cLandMark;
         final String finalCPincode = cPincode;
+
+
         upload.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
+
                 pbar.show();
 
-                if(selectedcourse.equals("default"))
-                {
-                    Toasty.error(getApplicationContext(),"Please Select Plan",Toasty.LENGTH_LONG,true).show();
+                if (selectedPlan.equals("Selected")) {
+                    Toasty.error(getApplicationContext(), "Please Select Plan", Toasty.LENGTH_LONG, true).show();
                     selectPlan.requestFocus();
                     pbar.dismiss();
-                }
-                else if(sumAssured.getText().toString().isEmpty())
-                {
+                } else if (sumAssured.getText().toString().isEmpty()) {
                     sumAssured.setError("Enter Valid Amount");
                     sumAssured.requestFocus();
                     pbar.dismiss();
-                }
-                else if(maturity.getText().toString().isEmpty())
-                {
+                } else if (maturity.getText().toString().isEmpty()) {
                     maturity.setError("Enter Valid Maturity Period");
                     maturity.requestFocus();
                     pbar.dismiss();
-                }
-                else if(premium.getText().toString().isEmpty())
-                {
+                } else if (premium.getText().toString().isEmpty()) {
                     maturity.setError("Select One");
                     maturity.requestFocus();
                     pbar.dismiss();
-                }
-                else
-                {
-                    DatabaseReference countCustomer=FirebaseDatabase.getInstance().getReference()
+                } else {
+                    //conversion
+
+
+                    DatabaseReference countCustomer = FirebaseDatabase.getInstance().getReference()
                             .child("users").child("agent")
                             .child(mAuth.getUid()).child("customer");
-                    messageKey=countCustomer.push().getKey();
+                    messageKey = countCustomer.push().getKey();
 
-                     userData=FirebaseDatabase.getInstance().getReference()
-                        .child("users").child("agent")
-                        .child(mAuth.getUid()).child("customer").child(String.valueOf(messageKey));
-
-
-                    if(!dateMarriage.equals("default"))
-                        updateImportntDates.child(dateMarriage).child("marriage").child(String.valueOf(messageKey)).setValue(finalCName);
-                    if(!dateBirth.equals("default"))
-                    updateImportntDates.child(dateBirth).child("birthday").child(String.valueOf(messageKey)).setValue(finalCName);
+                    userData = FirebaseDatabase.getInstance().getReference()
+                            .child("users").child("agent")
+                            .child(mAuth.getUid()).child("customer").child(String.valueOf(messageKey));
 
 
+                    if (!dateMarriage.equals("default"))
+                        updateImportntDates.child("date").child(dateMarriage).child("marriage").child(String.valueOf(messageKey)).setValue(finalCName);
+                    if (!dateBirth.equals("default"))
+                        updateImportntDates.child("date").child(dateBirth).child("birthday").child(String.valueOf(messageKey)).setValue(finalCName);
 
+                    //Location
+
+                    if (!finalCState.equals(""))
+                        updateImportntDates.child("filter").child("State").child(finalCState).child(messageKey).setValue(finalCState);
+
+                    if (!finalCArea.equals(""))
+                        updateImportntDates.child("filter").child("Area").child(finalCArea).child(messageKey).setValue(finalCArea);
+
+                    if (!finalCPincode.equals(""))
+                        updateImportntDates.child("filter").child("Pincode").child(finalCPincode).child(messageKey).setValue(finalCPincode);
+
+                    if (!finalCLandMark.equals(""))
+                        updateImportntDates.child("filter").child("Landmark").child(finalCLandMark).child(messageKey).setValue(finalCLandMark);
+
+
+                    updateImportntDates.child("filter").child("Plan").child(selectPlan.getText().toString()).child(messageKey).setValue(DateBima.getDate());
+
+                    Log.d("anni", finalCAnni);
+                    Log.d("anni", dateMarriage);
+
+                    userData.child("detail").child("anniversary").setValue(finalCAnni);
                     userData.child("detail").child("name").setValue(finalCName);
                     userData.child("detail").child("email").setValue(finalCEmail);
                     userData.child("detail").child("phone").setValue(finalCPhone);
@@ -283,7 +306,8 @@ public class UserForm2 extends AppCompatActivity {
                     userData.child("detail").child("plan").setValue(selectPlan.getText().toString());
 
 
-                    planKeyID=userData.child("plan").push().getKey();
+                    //planDetail
+                    planKeyID = userData.child("plan").push().getKey();
                     userData.child("plan").child(planKeyID).child("startdate").setValue(DateBima.getDate());
 
                     userData.child("plan").child(planKeyID).child("plan").setValue(selectPlan.getText().toString());
@@ -292,25 +316,24 @@ public class UserForm2 extends AppCompatActivity {
                     userData.child("plan").child(planKeyID).child("key").setValue(planKeyID);
                     userData.child("plan").child(planKeyID).child("sumassured").setValue(sumAssured.getText().toString())
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            convertPremium(premium.getText().toString());
-                            updateMaturity();
-                            Toasty.success(getApplicationContext(),"Success",Toasty.LENGTH_LONG,true).show();
-                            startActivity(new Intent(getApplicationContext(),AgentMainActivity.class));
-                            overridePendingTransition(R.anim.fadein,R.anim.fadeout);
-                            pbar.dismiss();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toasty.error(getApplicationContext(),e.getMessage(),Toasty.LENGTH_LONG,true).show();
-                            pbar.dismiss();
-                        }
-                    });
-                } } });
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    convertPremium(premium.getText().toString());
 
+                                    updateMaturity();
+
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toasty.error(getApplicationContext(), e.getMessage(), Toasty.LENGTH_LONG, true).show();
+                                    pbar.dismiss();
+                                }
+                            });
+                }
+            }
+        });
 
 
     }
@@ -319,7 +342,7 @@ public class UserForm2 extends AppCompatActivity {
         getPlan.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                value=dataSnapshot.getValue(String.class);
+                value = dataSnapshot.getValue(String.class);
                 list_of_array.add(value);
                 count++;
                 pbar.dismiss();
@@ -348,14 +371,13 @@ public class UserForm2 extends AppCompatActivity {
 
     }
 
-    public void init()
-    {
-        selectPlan=findViewById(R.id.selectPlan);
-        sumAssured=findViewById(R.id.sumAssured);
-        maturity=findViewById(R.id.maturity);
-        premium=findViewById(R.id.premium);
-        planDrop=findViewById(R.id.planDrop);
-        premiumDrop=findViewById(R.id.premiumDrop);
+    public void init() {
+        selectPlan = findViewById(R.id.selectPlan);
+        sumAssured = findViewById(R.id.sumAssured);
+        maturity = findViewById(R.id.maturity);
+        premium = findViewById(R.id.premium);
+        planDrop = findViewById(R.id.planDrop);
+        premiumDrop = findViewById(R.id.premiumDrop);
 
     }
 
@@ -365,44 +387,76 @@ public class UserForm2 extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void updateMaturity()
-    {
-        int countMaturity=1;
-        int maturityPeriod= (premiumInYear/12) *Integer.parseInt(maturity.getText().toString());
+    public void updateMaturity() {
+
+        DatabaseReference updatePremiumDate = FirebaseDatabase.getInstance().getReference()
+                .child("users").child("agent")
+                .child(mAuth.getUid()).child("premium");
+
+        int countMaturity = 1;
+        long maturityPeriod = (12 / premiumInYear) * Integer.parseInt(maturity.getText().toString());
         //int maturityPremium=Integer.parseInt(premium.getText().toString());
 
+        HashMap<String, Object> hashMap = new HashMap<>();
 
-        while (countMaturity<=maturityPeriod){
-            String date =DateBima.getMaturityDate(countMaturity* premiumInYear);
-            userData.child("maturity").child(planKeyID)
-                    .child(String.valueOf(countMaturity)).setValue(date);
+        while (countMaturity <= maturityPeriod) {
+            String date = DateBima.getMaturityDate(countMaturity * premiumInYear);
+            hashMap.put(String.valueOf(countMaturity), date);
+
+            updatePremiumDate.child(date).child(planKeyID).setValue(messageKey);
             countMaturity++;
         }
 
+        Log.d("maturity", hashMap.toString());
+        userData.child("maturity").child(planKeyID).updateChildren(hashMap).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toasty.error(getApplicationContext(), "Maturity error : " + e.getMessage()).show();
+                startActivity(new Intent(getApplicationContext(), AgentMainActivity.class));
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                pbar.dismiss();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toasty.success(getApplicationContext(), "Success", Toasty.LENGTH_LONG, true).show();
+                startActivity(new Intent(getApplicationContext(), AgentMainActivity.class));
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                pbar.dismiss();
+            }
+        });
 
 
     }
-    public void convertPremium(String msg)
-    {
 
-        switch (msg)
-        {
+    public void convertPremium(String msg) {
+
+        switch (msg) {
             case "Yearly":
 
-                premiumInYear =12;
+                premiumInYear = 12;
                 break;
             case "Half-yearly":
-                premiumInYear =6;
+                premiumInYear = 6;
                 break;
             case "quarterly":
-                premiumInYear =4;
+                premiumInYear = 3;
                 break;
             case "Monthly":
-                premiumInYear =1;
+                premiumInYear = 1;
                 break;
 
 
         }
+
+
+    }
+
+
+
+    /* ********************  Update Premium Date ********************/
+
+    public void uploadPremium() {
 
 
     }

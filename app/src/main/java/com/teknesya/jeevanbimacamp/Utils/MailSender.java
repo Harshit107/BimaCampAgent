@@ -36,7 +36,7 @@ public class MailSender {
         GMailSender.withAccount("jeevanbimacamp@gmail.com", "youtubekapassword")
                 .withTitle(title)
                 .withBody(body)
-                .withSender("Jeevan BimaCamp")
+                .withSender("JeevanBimaCamp")
                 .toEmailAddress(reciverEmail) // one or multiple addresses separated by a comma
                 .withListenner(new GmailListener() {
                     @Override
@@ -48,7 +48,7 @@ public class MailSender {
                     @Override
                     public void sendFail(String err) {
                         Log.d("Mail",err);
-                        //Toasty.error(context, "Fail"+err, Toast.LENGTH_SHORT,true).show();
+                        //  Toasty.error(context, "Fail"+err, Toast.LENGTH_SHORT,true).show();
                     }
                 })
                 .send();

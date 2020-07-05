@@ -20,6 +20,7 @@ import com.teknesya.jeevanbimacamp.CreateNewLead;
 import com.teknesya.jeevanbimacamp.R;
 import com.teknesya.jeevanbimacamp.SharedPreferenceValue;
 import com.teknesya.jeevanbimacamp.TabFragment.FreshCall;
+import com.teknesya.jeevanbimacamp.UpComingDates;
 import com.teknesya.jeevanbimacamp.ViewLead;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -34,6 +35,8 @@ public class ServiceFragment extends Fragment {
     private FrameLayout fViewLead;
     private FrameLayout fTodaysReminder;
     private FrameLayout fFreshCall;
+    private FrameLayout fUpcommingEvent;
+    ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +53,7 @@ public class ServiceFragment extends Fragment {
         fFreshCall = getActivity().findViewById(R.id.fFreshReminder);
         reminderIcon = getActivity().findViewById(R.id.reminderIcon);
         changeTextReminder = getActivity().findViewById(R.id.remindertext);
+        fUpcommingEvent = getActivity().findViewById(R.id.fUpcommingBirdthday);
 
         updateReminderIcon();
 
@@ -57,6 +61,13 @@ public class ServiceFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent it = new Intent(getContext(), AlarmSetting.class);
+                startActivity(it);
+            }
+        });
+        fUpcommingEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(getContext(), UpComingDates.class);
                 startActivity(it);
             }
         });

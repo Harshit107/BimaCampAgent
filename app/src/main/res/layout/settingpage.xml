@@ -168,9 +168,15 @@
                     android:paddingLeft="20dp"
                     android:text="Login &amp; Security"/>
             </LinearLayout>
+
+
+<!--            Notification visible is Gone-->
+
+
             <LinearLayout
                 android:id="@+id/notification"
                 android:layout_marginTop="25dp"
+                android:visibility="gone"
                 android:orientation="horizontal"
                 android:paddingLeft="25dp"
                 android:layout_width="match_parent"
@@ -262,7 +268,7 @@
                     android:padding="2.5dp"
                     android:tint="@color/black"
 
-                    android:src="@drawable/ic_mode_edit_black_24dp"/>
+                    android:src="@drawable/ic_person_add_black_24dp"/>
                 <TextView
                     android:textStyle="bold"
                     android:textColor="@color/black"
@@ -286,8 +292,8 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:tint="@color/black"
-
-                    android:src="@drawable/icon_person"/>
+                    android:padding="3dp"
+                    android:src="@drawable/viewcustomer"/>
                 <TextView
 
                     android:textStyle="bold"
@@ -339,6 +345,7 @@
             android:layout_gravity="center"
             >
             <LinearLayout
+                android:id="@+id/privacy"
                 android:orientation="horizontal"
                 android:paddingLeft="25dp"
                 android:layout_marginTop="15dp"
@@ -350,7 +357,7 @@
                     android:padding="2.5dp"
                     android:tint="@color/black"
 
-                    android:src="@drawable/ic_mode_edit_black_24dp"/>
+                    android:src="@drawable/ic_privacy_in_not_black_24dp"/>
                 <TextView
                     android:textStyle="bold"
                     android:textColor="@color/black"
@@ -372,7 +379,7 @@
                     android:layout_height="25dp"
                     android:tint="@color/black"
 
-                    android:src="@drawable/icon_person"/>
+                    android:src="@drawable/ic_menu_share"/>
                 <TextView
                     android:textStyle="bold"
                     android:textColor="@color/black"
@@ -395,7 +402,7 @@
                     android:layout_height="25dp"
                     android:tint="@color/black"
 
-                    android:src="@drawable/ic_account_balance_wallet_black_24dp"/>
+                    android:src="@drawable/icon_mail"/>
                 <TextView
                     android:textStyle="bold"
                     android:textColor="@color/black"
@@ -406,6 +413,7 @@
                     android:text="Contact Us"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/aboutus"
                 android:layout_marginTop="25dp"
                 android:orientation="horizontal"
                 android:paddingLeft="25dp"
@@ -416,8 +424,8 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:tint="@color/black"
-
-                    android:src="@drawable/ic_account_balance_wallet_black_24dp"/>
+                    android:padding="3dp"
+                    android:src="@drawable/icon_question"/>
                 <TextView
                     android:textStyle="bold"
                     android:textColor="@color/black"

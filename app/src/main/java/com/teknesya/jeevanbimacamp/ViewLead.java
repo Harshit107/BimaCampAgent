@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -54,6 +55,13 @@ public class ViewLead extends AppCompatActivity {
         noLeade=findViewById(R.id.noLead);
         mauth = FirebaseAuth.getInstance();
 
+        ImageView back=findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview_lead);
         leadViewAdapter = new LeadViewAdapter(messagelist,getApplicationContext());

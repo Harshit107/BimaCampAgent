@@ -22,10 +22,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.teknesya.jeevanbimacamp.Adapter.CustomerRecyclerAdapter;
 import com.teknesya.jeevanbimacamp.Adapter.FreshCallAdapter;
 import com.teknesya.jeevanbimacamp.ItemLead;
 import com.teknesya.jeevanbimacamp.R;
 import com.teknesya.jeevanbimacamp.Utils.DateBima;
+import com.teknesya.jeevanbimacamp.model.CustomerlListings;
 
 import java.util.ArrayList;
 
@@ -44,8 +46,8 @@ public class Anniversary extends Fragment {
     private FirebaseAuth mauth;
     private DatabaseReference userReference, groupnameref;
     private ScrollView scrollView;
-    private final ArrayList<ItemLead> messagelist = new ArrayList<>();
-    private FreshCallAdapter todaysFreshAdapter;
+    private final ArrayList<CustomerlListings> messagelist = new ArrayList<>();
+    private CustomerRecyclerAdapter todaysFreshAdapter;
     private RecyclerView recyclerView;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -56,11 +58,12 @@ public class Anniversary extends Fragment {
         ptext = progress.findViewById(R.id.progress_text);
         progress.setVisibility(View.VISIBLE);
         noFresh=view.findViewById(R.id.noFresh);
+        noFresh.setVisibility(View.GONE);
         todaysDate= DateBima.getTodaysDateMonth();
        // Toasty.info(getContext(),todaysDate).show();
         mauth = FirebaseAuth.getInstance();
 
-        todaysFreshAdapter = new FreshCallAdapter(messagelist,getApplicationContext(),getActivity());
+        todaysFreshAdapter = new CustomerRecyclerAdapter(messagelist,getApplicationContext(),Anniversary.this);
         recyclerView = (RecyclerView) view.findViewById(R.id.freshRecycler);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -75,7 +78,7 @@ public class Anniversary extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild(todaysDate)) {
-                    if (!dataSnapshot.child(todaysDate).hasChild("anniversary")) {
+                    if (!dataSnapshot.child(todaysDate).hasChild("marriage")) {
                         notFound();
                     } 
                 }else notFound();
@@ -93,69 +96,51 @@ public class Anniversary extends Fragment {
 
 
         groupnameref.keepSynced(true);
-        groupnameref.child("date").addChildEventListener(new ChildEventListener() {
+        groupnameref.child("date").child(DateBima.getTodaysDateMonth()).child("marriage").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String currentDate=dataSnapshot.getKey();
-                groupnameref.child("date").child(currentDate).child("anniversary").addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if(dataSnapshot.exists()) {
 
-                        if(dataSnapshot.exists()) {
+                    final String nodeId = dataSnapshot.getKey();
 
-                            final String nodeId = dataSnapshot.getKey();
-
-                            groupnameref.child("customer").child(nodeId).addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    groupnameref.child("customer").child(nodeId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                                    String name = dataSnapshot.child("Name").getValue().toString();
-                                    String phone = dataSnapshot.child("Phone").getValue().toString();
-                                    ItemLead data = new ItemLead(name, phone, nodeId);
-                                    messagelist.add(data);
-                                    todaysFreshAdapter.notifyDataSetChanged();
-                                    recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount());
-                                    progress.setVisibility(View.GONE);
-                                }
+//                                    String name = dataSnapshot.child("Name").getValue().toString();
+//                                    String phone = dataSnapshot.child("Phone").getValue().toString();
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                            String name =  dataSnapshot.child("detail").child("name").getValue().toString();
+                            String email =  dataSnapshot.child("detail").child("email").getValue().toString();
+                            String plan =  dataSnapshot.child("detail").child("gender").getValue().toString();
+                            String image = "";
+                            try {
+                                image =  dataSnapshot.child("detail").child("image").getValue().toString();
+                            } catch (Exception e) {
+                                image = "Default";
+                            }
 
-                                }
-                            });
+                            String nodeId = dataSnapshot.getKey();
+                            CustomerlListings javamesssage = new CustomerlListings(name, image, plan, email, nodeId);
+                            messagelist.add(javamesssage);
+                            todaysFreshAdapter.notifyDataSetChanged();
+
+                            progress.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
                         }
-                    }
+                    });
 
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-
+                }
 
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
 
             }
 
@@ -191,7 +176,7 @@ public class Anniversary extends Fragment {
     {
         progress.setVisibility(View.GONE);
         noFresh.setVisibility(View.VISIBLE);
-        Toasty.info(getApplicationContext(),"No Anniversary Found Today",Toasty.LENGTH_LONG,true).show();
+      //  Toasty.info(getApplicationContext(),"No Anniversary Found Today",Toasty.LENGTH_LONG,true).show();
 
     }
 }
