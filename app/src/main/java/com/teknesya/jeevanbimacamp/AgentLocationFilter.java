@@ -82,7 +82,7 @@ public class AgentLocationFilter extends AppCompatActivity {
         groupnameref = mRoot
                 .child("users").child("agent").child(mAuth.getUid());
         Log.d("filterr","Before init");
-        
+
         ImageView back=findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

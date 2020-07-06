@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.cardview.widget.CardView
-
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:elevation="5dp"
-    app:cardElevation="5dp"
+    android:elevation="10dp"
+    app:cardElevation="15dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<LinearLayout
 
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/primarycolorborder"
+    android:layout_marginBottom="1dp"
     android:orientation="horizontal"
     >
     <ImageView
@@ -27,16 +26,13 @@
         android:layout_marginLeft="3dp"
 
         />
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="10dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="2dp"
         android:padding="10dp">
 
 
@@ -91,13 +87,8 @@
                     android:textSize="14sp" />
 
             </LinearLayout>
-
         </LinearLayout>
-
-
-
     </LinearLayout>
-
 </LinearLayout>
 </androidx.cardview.widget.CardView>
 

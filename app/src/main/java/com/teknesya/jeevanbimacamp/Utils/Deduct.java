@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.teknesya.jeevanbimacamp.notification.NotificationReminder;
 
 import es.dmoral.toasty.Toasty;
 
@@ -46,27 +47,10 @@ public class Deduct {
             }
         });
     }
-    public void deductWallet(final int amount)
-    {
-        deductamountDB=mRoot.child("users").child("customer").child("registered").child("detail")
-                .child(mAuth.getUid());
-        deductamountDB.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild("wallet"))
-                {
-                    int prevAmount=Integer.parseInt(dataSnapshot.child("wallet").getValue().toString());
-                    deductamountDB.child("wallet").setValue(String.valueOf(prevAmount-amount));
 
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toasty.error(context,databaseError.getMessage()).show();
-            }
-        });
-    }
+
+
 
 
 }

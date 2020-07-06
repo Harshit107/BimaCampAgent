@@ -20,6 +20,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
 import com.itextpdf.text.Paragraph;
@@ -33,6 +34,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Date;
 
 public class Pdf1Activity extends AppCompatActivity {
@@ -161,6 +164,8 @@ public class Pdf1Activity extends AppCompatActivity {
             // TODO Auto-generated catch block
             e.printStackTrace();
             Log.d("PDF",e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -177,7 +182,8 @@ public class Pdf1Activity extends AppCompatActivity {
 
 
     private static void addTitlePage(Document document)
-            throws DocumentException {
+            throws DocumentException, IOException {
+
         Paragraph preface = new Paragraph();
         // We add one empty line
         addEmptyLine(preface, 1);

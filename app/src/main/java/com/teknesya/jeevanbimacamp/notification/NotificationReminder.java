@@ -41,7 +41,7 @@ public class NotificationReminder {
                 .setContentIntent(pendingIntent)
                 .setLargeIcon(largeIcon)  //side image
                 .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+
                 .setAutoCancel(true)
                 .build();
                  notificationManager.notify((int)(Calendar.getInstance().getTimeInMillis()/1000),notification);

@@ -24,8 +24,8 @@
             android:layout_width="0dp"
             android:layout_weight="4.3"
             android:layout_height="wrap_content"
-            android:text="Upload Image"
-            android:id="@+id/updateImage"
+            android:text="Create PDF"
+            android:id="@+id/create_pdf"
             android:background="@color/colorPrimary"
             android:textColor="@color/white"/>
         <View
@@ -36,8 +36,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4.3"
-            android:text="Add New Plan"
-            android:id="@+id/add"
+            android:padding="5dp"
+            android:text="Create Presentation"
+            android:id="@+id/create"
             android:background="@color/colorPrimary"
             android:textColor="@color/white"/>
 
@@ -47,4 +48,5 @@
         android:visibility="gone"
         android:id="@+id/progress_bar"
         layout="@layout/progress_fragment"/>
+
 </RelativeLayout>

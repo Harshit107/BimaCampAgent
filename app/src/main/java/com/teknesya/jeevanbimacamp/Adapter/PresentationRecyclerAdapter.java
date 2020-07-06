@@ -46,15 +46,16 @@ public class PresentationRecyclerAdapter extends RecyclerView.Adapter<Presentati
     private Context context;
     Activity activity;
 
-    public PresentationRecyclerAdapter(List<presentationG> listItems, Context context,Activity activity) {
+    public PresentationRecyclerAdapter(List<presentationG> listItems, Context context, Activity activity) {
         this.listItems = listItems;
         this.context = context;
-        this.activity=activity;
+        this.activity = activity;
     }
 
-    public interface OnLoadMoreListener{
+    public interface OnLoadMoreListener {
         void onLoadMore();
     }
+
     public List<presentationG> getListItems() {
         return listItems;
     }
@@ -81,47 +82,46 @@ public class PresentationRecyclerAdapter extends RecyclerView.Adapter<Presentati
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final presentationG listItem = listItems.get(position);
-         final String id;
+        final String id;
         holder.name.setText(listItem.getName());
         holder.date.setText(listItem.getDate());
-        holder.presentation.setText("Count "+listItem.getRemaning());
-        id=listItem.getNodeID();
+        holder.presentation.setText("Count " + listItem.getRemaning());
+        id = listItem.getNodeID();
         //Log.d("presentation", listItem.getString());
-
         //Onclick action to the RecyclearView
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-               AlertDialog.Builder builder= new AlertDialog.Builder(activity);
-                       builder .setPositiveButton("Delete Presentation", new DialogInterface.OnClickListener() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setPositiveButton("Delete Presentation", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toasty.info(context, "Deleting Presentation..").show();
+                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                        DatabaseReference mRoot = FirebaseDatabase.getInstance().getReference();
+                        final DatabaseReference getPresentationDB = mRoot.child("users").child("agent")
+                                .child(mAuth.getUid()).child("presentation").child(id);
+                        getPresentationDB.removeValue();
+                        DatabaseReference removePresentation = mRoot.child("unique").child("presentation");
+                        removePresentation.child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Toasty.info(context,"Deleting Presentation..").show();
-                                FirebaseAuth mAuth=FirebaseAuth.getInstance();
-                                DatabaseReference mRoot= FirebaseDatabase.getInstance().getReference();
-                                final DatabaseReference getPresentationDB = mRoot.child("users").child("agent")
-                                        .child(mAuth.getUid()).child("presentation").child(id);
-                                getPresentationDB.removeValue();
-                                DatabaseReference removePresentation=mRoot.child("unique").child("presentation");
-                                removePresentation.child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        Toasty.success(context,"Success").show();
-                                        activity.finish();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toasty.error(context,e.getMessage()).show();
-                                    }
-                                });
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toasty.success(context, "Success").show();
+                                activity.finish();
                             }
-                        })
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toasty.error(context, e.getMessage()).show();
+                            }
+                        });
+                    }
+                })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss();
+                                dialogInterface.dismiss();
                             }
                         })
                         .setMessage("Once You Delete Presentation," +
@@ -141,26 +141,30 @@ public class PresentationRecyclerAdapter extends RecyclerView.Adapter<Presentati
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String s= listItem.getString();
-                Log.i("stringview",s);
-                String [] split=s.split("--");
 
-                Intent it=new Intent(context, AgentAnimationView.class);
-                it.putExtra("string",split);
-                it.putExtra("id",id);
+                String s = listItem.getString();
+
+                Log.i("stringview", s);
+
+                String[] split = s.split("--");
+
+                Intent it = new Intent(context, AgentAnimationView.class);
+                it.putExtra("string", split);
+                it.putExtra("id", id);
                 it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(it);
 
             }
         });
     }
+
     @Override
     public int getItemCount() {
         return listItems.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name, date,presentation;
+        TextView name, date, presentation;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -169,11 +173,7 @@ public class PresentationRecyclerAdapter extends RecyclerView.Adapter<Presentati
             presentation = (TextView) itemView.findViewById(R.id.presentation);
         }
 
-        public void deletePresentation(String id)
-        {
-
-
-
+        public void deletePresentation(String id) {
 
 
         }

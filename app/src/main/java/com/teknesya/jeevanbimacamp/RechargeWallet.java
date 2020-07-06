@@ -34,7 +34,7 @@ public class RechargeWallet extends AppCompatActivity {
     FirebaseAuth mAuth;
     String walletPrevAmount;
     DatabaseReference mRoot,updateAmount;
-    String msg="Your Wallet has been Recharge Successful",title="Wallet Recharge Successful",eMail="";
+    String msg="Wallet Recharged Successfully",title="Recharge",eMail="";
     String prevwalletMessage="\nYour Previous Wallet Balance was : ";
     String currentWalletMessage="\nYour Current Wallet Balance is : ";
 
@@ -90,16 +90,14 @@ public class RechargeWallet extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         pText.setText("Success");
                         NotificationReminder notificationReminder=new NotificationReminder(getApplicationContext()
-                        ,"Recharge Success",
-                                "Thankyou for Using JeevanBimacamp\nYour Recharge has been successful");
+                        ,"Recharge",
+                                "Thankyou for Using JeevanBimacamp\nYour Recharge is successful");
                         String nMsg=msg+prevwalletMessage+walletPrevAmount+currentWalletMessage+amountToBeAdded;
                         MailSender mailSender=new MailSender(RechargeWallet.this,nMsg,title,eMail);
                         mailSender.sendEmail();
                   Toasty.success(getApplicationContext(),"Recharge Successful",Toasty.LENGTH_LONG,true).show();
-                        Intent it=new Intent(getApplicationContext(), BuyPresentation.class);
                         progress.setVisibility(View.GONE);
                         finish();
-                        startActivity(it);
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
